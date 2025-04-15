@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-confortaa: var(--font-confortaa);
+  --font-noto: var(--font-noto)
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+
+}
+
+main {
+  @media screen and (max-width: 640px) {
+    padding: 1rem;
+
+  }
+}
+
+.main-container {
+  background-color: #ffffff;
+  padding: 5rem;
+  max-width: 80rem;
+
+  @media screen and (max-width: 640px) {
+    padding: 1rem;
+    margin: 0 auto;
+    max-width: 800px;
+
+  }
+}
+
+.experience,
+.about-us,
+.projects,
+.header,
+.skills {
+  span {
+    text-transform: uppercase;
+    color: #0a0a0a;
+    font-size: 1.3rem;
+  }
+}
+
+.about-us {
+  p {
+    font-family: 14px;
+    font-family: "Noto Sans", sans-serif;
+  }
+}
+
+.recommendation-item {
+  @media screen and (max-width: 640px) {
+    display: none;
+
+  }
+}
+
+.modal {
+  color: #0a0a0a;
+}
+
+::marker {
+  color: #fb733c;
+}
+
+svg.svg-icon {
+  width: auto;
+  height: 1rem;
+  margin-right: 10px;
+}
+
+
+
+.hero {
+
+  color: #0a0a0a;
+
+
+  h1 {
+    font-size: 32px;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: lighter;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  a.link {
+    display: flex;
+    align-items: center;
+    color: #0a0a0a;
+    justify-items: center;
+    font-size: 1rem;
+    font-weight: normal;
+
+    &:hover {
+      color: #fb733c;
+    }
+
+  }
+}
+
+.footer {
+  display: flex;
+  height: 6rem;
+  background: white;
+  color: black;
+  padding: 0;
+  width: 100%;
+
+  @media screen and (max-width: 640px) {
+    height: 4rem;
+    padding: 0;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+}
