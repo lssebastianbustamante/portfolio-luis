@@ -7,7 +7,7 @@ const HeadLine: React.FC = () => {
             display: "flex",
             alignItems: "center",
             marginBottom: "0.7104em"
-        }} className="text-3xl font-semibold mb-6  pb-2 font-noto">
+        }} className="text-3xl font-semibold mb-6  pb-2">
 
             <span color="#000000" style={{
                 display: "flex",

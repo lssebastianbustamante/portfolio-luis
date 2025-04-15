@@ -36,7 +36,7 @@ const Recommendation: React.FC<Props> = ({ item }) => {
                             {rec.date.toLocaleDateString()} | {rec.relationship}
                         </p>
 
-                        <p className="text-gray-700 italic mb-2">"{rec.text}"</p>
+                        <p className="text-gray-700 italic mb-2">{rec.text}</p>
                     </div>
                 ))}
             </div>

@@ -1,4 +1,4 @@
-import { LINKEDIN_RECOMMENDATIONS_URL } from "@/app/utils/getRecomendation"
+
 import { PropsExpirienceItem } from "../ExperienceItem"
 import HighlightedProject from "./HighLightProject"
 import Responsabilities from "./Resposabilities"

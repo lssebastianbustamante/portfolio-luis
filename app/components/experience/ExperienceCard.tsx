@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { PropsExpirienceItem } from "../ExperienceItem";
 
 interface ExperienceCardProps {

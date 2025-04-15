@@ -2,14 +2,6 @@ import { PropsExpirienceItem } from "../components/ExperienceItem";
 
 export const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/in/luissb-bustamante/details/recommendations/";
 
-interface Recommendation {
-    id: string;
-    organization: string;
-    author: string;
-    relationship: string;
-    text: string;
-    date: Date;
-}
 
 export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
     // Datos de ejemplo
