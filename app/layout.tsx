@@ -9,9 +9,10 @@ const inter = Inter({
 
 const noto = Noto_Sans({
   weight: ['400', '600', '700'],
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'], // Añadidos los subsets necesarios
   display: 'swap',
-  variable: '--font-noto-sans'
+  variable: '--font-noto-sans',
+  preload: true // Explícitamente habilitamos el preload
 });
 
 export const metadata = {
