@@ -1,33 +1,44 @@
-import { Inter, Noto_Sans } from 'next/font/google';
-import './globals.css';
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter'
-});
+import { Comfortaa, Noto_Sans } from "next/font/google";
+import "./globals.css";
 
-const noto = Noto_Sans({
-  weight: ['400', '600', '700'],
-  subsets: ['latin', 'latin-ext'], // Añadidos los subsets necesarios
-  display: 'swap',
-  variable: '--font-noto-sans',
-  preload: true // Explícitamente habilitamos el preload
-});
+
 
 export const metadata = {
   title: 'Portfolio Luis Bustamante',
   description: 'Desarrollador Full Stack con experiencia en React, TypeScript y Node.js',
 };
 
+export const comfortaa= Comfortaa({
+  variable: "--font-comfortaa",
+  subsets: ["latin"],
+  preload: true,
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal"],
+  fallback: ["system-ui", "arial"],
+})
+
+export const noto = Noto_Sans({
+  variable: "--font-noto-sans",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  style: ["normal", "italic"],
+  fallback: ["system-ui", "arial"],
+
+  preload: true,
+  subsets: [`cyrillic`, `cyrillic-ext`, `devanagari`, `greek`, `greek-ext`, `latin`, `latin-ext`, `vietnamese`],
+})
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="es" className={`${inter.variable} ${noto.variable}`}>
-      <body>
+    <html lang="en">
+      <body
+        className={`${noto.variable} ${comfortaa.variable}`}
+      >
         {children}
       </body>
     </html>
