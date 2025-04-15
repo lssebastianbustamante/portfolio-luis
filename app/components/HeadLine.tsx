@@ -1,4 +1,4 @@
-const HeadLine: React.FC = () => {
+const HeadLine = () => {
 
 
     return (
