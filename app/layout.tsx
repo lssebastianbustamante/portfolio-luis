@@ -27,7 +27,7 @@ export const noto = Noto_Sans({
   fallback: ["system-ui", "arial"],
 
   preload: true,
-  subsets: [`cyrillic`, `cyrillic-ext`, `devanagari`, `greek`, `greek-ext`, `latin`, `latin-ext`, `vietnamese`],
+  subsets: [`cyrillic-ext`, `devanagari`, `greek`, `greek-ext`, `latin`, `latin-ext`, `vietnamese`],
 })
 export default function RootLayout({
   children,
