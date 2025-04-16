@@ -1,6 +1,8 @@
 import React from 'react';
-import { IconHeadLine } from '../../common';
+
 import ProjectCard from './ProjectCard';
+import IconHeadLine from '../../common/Icons/Icons';
+
 
 
 

@@ -1,19 +1,19 @@
-import { PropsExpirienceItem } from "./ExperienceItem";
+import { PropsExperienceItem } from "./ExperienceItem";
 
 
 
 const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/recommendations"; // Replace with the actual URL
 
 interface Props {
-    item: PropsExpirienceItem
+    item: PropsExperienceItem
 }
 
-const Recommendation: React.FC<Props> = ({ item }) => {
+const Recomendation: React.FC<Props> = ({ item }) => {
     if (!item?.details) return
 
 
-    const { recomendations } = item.details
-    if (!recomendations || recomendations.length === 0) return null
+    const { recomendationsJob } = item.details
+    if (!recomendationsJob || recomendationsJob.length === 0) return null
     return (
         <div className="mt-4 pt-4 border-t recomendation">
             <div className="flex justify-between items-center mb-4">
@@ -31,7 +31,7 @@ const Recommendation: React.FC<Props> = ({ item }) => {
                 </a>
             </div>
             <div className="space-y-4 recommendation-items">
-                {recomendations?.map((rec) => (
+                {recomendationsJob?.map((rec) => (
                     <div key={rec.id} className="recommendation-item bg-gray-50 rounded-lg">
                         <p className="text-black font-bold">
                             {rec.author}
@@ -48,4 +48,4 @@ const Recommendation: React.FC<Props> = ({ item }) => {
     )
 }
 
-export default Recommendation
+export default Recomendation

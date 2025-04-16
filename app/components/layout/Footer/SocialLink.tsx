@@ -1,4 +1,7 @@
-import { SocialIcon } from "../../common";
+import SocialIcon from "../../common/Icons/SocialIcon";
+
+
+
 
 interface SocialLinkProps {
   href: string;

@@ -1,4 +1,4 @@
-// types/experience.ts
+
 export interface Experience {
   title: string;
   company: string;
@@ -6,7 +6,6 @@ export interface Experience {
   description: string;
 }
 
-// types/project.ts
 export interface Project {
   title: string;
   description: string;

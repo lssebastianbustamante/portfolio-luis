@@ -1,5 +1,10 @@
-import { Header, Footer } from "./components/layout";
-import { About, Projects, Skills, Experience } from "./components/sections/index";
+import Footer from "./components/layout/Footer/Footer";
+import Header from "./components/layout/Header/Header";
+import About from "./components/sections/About/About";
+import Experience from "./components/sections/Experience/Experience";
+import Projects from "./components/sections/Projects/Projects";
+import Skills from "./components/sections/Skills/Skills";
+
 
 
 

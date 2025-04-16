@@ -1,14 +1,10 @@
-import { PropsExpirienceItem } from "../components/sections";
+import { PropsExperienceItem } from "../components/sections/Experience/ExperienceItem";
 
 
 
-
-export const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/in/luissb-bustamante/details/recommendations/";
-
-
-export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
+export async function getRecommendations(): Promise<PropsExperienceItem[]> {
     // Datos de ejemplo
-    const mockRecommendations: PropsExpirienceItem[] = [
+    const mockRecommendations: PropsExperienceItem[] = [
         {
             company: "Infracommerce",
             role: "Ssr Fullstack Developer",
@@ -57,7 +53,7 @@ export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
                     repository: "https://github.com/lssebastianbustamante/filter-product-specification"
                 },
                 stack: "React, TypeScript, RESTful APIs / GraphQL, VTEX IO, Context API, Node.js, Git",
-                recomendations: [
+                recomendationsJob: [
                     {
                         id: "1",
                         organization: "Valtech",
@@ -84,7 +80,7 @@ export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
                     "Refactorización de código heredado para mejorar la escalabilidad"
                 ],
                 stack: "JavaScript, HTML, CSS, MySQL, PHP, Git",
-                recomendations: [
+                recomendationsJob: [
                     {
                         id: "1",
                         organization: "Coradir",

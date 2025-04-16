@@ -1,10 +1,11 @@
-import { PropsExpirienceItem } from "./ExperienceItem"
+import { PropsExperienceItem } from "./ExperienceItem"
+
 
 
 
 
 interface Props {
-    item: PropsExpirienceItem
+    item: PropsExperienceItem
 }
 
 const Responsibilities: React.FC<Props> = ({ item }) => {

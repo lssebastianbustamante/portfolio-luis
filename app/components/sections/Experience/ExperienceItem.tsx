@@ -8,7 +8,7 @@ import Modal from '../../common/Modal/Modal';
 
 
 
-interface Recommendation {
+interface RecommendationsJob {
     id: string;
     organization: string;
     text: string;
@@ -17,7 +17,7 @@ interface Recommendation {
     date: Date;
 }
 
-export interface PropsExpirienceItem {
+export interface PropsExperienceItem {
     company: string;
     role: string;
     period: string;
@@ -31,7 +31,7 @@ export interface PropsExpirienceItem {
             repository?: string;
         };
         stack: string;
-        recomendations?: Recommendation[]
+        recomendationsJob?: RecommendationsJob[]
     };
 }
 

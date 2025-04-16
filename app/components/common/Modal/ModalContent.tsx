@@ -1,12 +1,12 @@
-import {
-    Responsibilities,
-    Recommendation,
-    HighlightedProject,
-    type PropsExpirienceItem
-} from '@/app/components/sections/Experience';
+import { PropsExperienceItem } from "../../sections/Experience/ExperienceItem"
+import HighlightedProject from "../../sections/Experience/HighlightedProject"
+import Recommendation from "../../sections/Experience/Recomendation"
+import Responsibilities from "../../sections/Experience/Responsibilities"
+
+
 
 interface Props {
-    item: PropsExpirienceItem
+    item: PropsExperienceItem
 }
 
 const ModalContent: React.FC<Props> = ({ item }) => {

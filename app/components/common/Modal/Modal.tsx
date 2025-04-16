@@ -1,11 +1,14 @@
+
 import React from 'react';
-import { type PropsExpirienceItem } from '@/app/components/sections/Experience';
-import { ModalContent } from './';
+import ModalContent from './ModalContent';
+import { PropsExperienceItem } from '../../sections/Experience/ExperienceItem';
+
+
 
 export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
-    item: PropsExpirienceItem
+    item: PropsExperienceItem
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item }) => {

@@ -1,5 +1,7 @@
+
 import React from 'react';
-import { IconHeadLine } from '../../common';
+import IconHeadLine from '../../common/Icons/Icons';
+
 
 
 const Skills: React.FC = () => {

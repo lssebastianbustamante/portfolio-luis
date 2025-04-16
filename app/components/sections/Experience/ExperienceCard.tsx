@@ -1,11 +1,14 @@
-import { PropsExpirienceItem } from "./ExperienceItem";
+import { PropsExperienceItem } from "./ExperienceItem";
+
+
+
 
 
 
 
 
 interface ExperienceCardProps {
-    item: PropsExpirienceItem
+    item: PropsExperienceItem
     onClick: () => void;
 }
 

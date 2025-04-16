@@ -1,4 +1,4 @@
-export interface SocialIconProps {
+interface SocialIconProps {
     title: string;
     path: string;
   }
