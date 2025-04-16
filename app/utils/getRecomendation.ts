@@ -1,4 +1,6 @@
-import { PropsExpirienceItem } from "../components/ExperienceItem";
+import { PropsExpirienceItem } from "../lib/types";
+
+
 
 export const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/in/luissb-bustamante/details/recommendations/";
 

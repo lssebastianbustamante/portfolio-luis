@@ -1,6 +1,8 @@
 import React from 'react';
+import { IconHeadLine } from '../../common';
 import ProjectCard from './ProjectCard';
-import IconHeadLine from './IconHeadLine';
+
+
 
 const Projects: React.FC = () => {
     const projectList = [
@@ -11,10 +13,10 @@ const Projects: React.FC = () => {
             stack: 'React, TypeScript, VTEX IO, GraphQL'
         },
         {
-            title: 'Custom Flags',
-            description: 'Módulo para promociones dinámicas con arquitectura modular y escalable',
-            link: 'https://github.com/lssebastianbustamante/custom-flags',
-            stack: 'React, TypeScript, VTEX IO, GraphQL'
+            title: 'Custom Wheel Fortune',
+            description: 'Una aplicación VTEX IO que implementa una ruleta de premios interactiva con arquitectura cliente-servidor.',
+            link: 'https://github.com/lssebastianbustamante/wheel-fortune',
+            stack: 'React, TypeScript, Node.js, GraphQL'
         },
         {
             title: 'Microservicio',

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import { getRecommendations } from '../utils/getRecomendation';
-import { PropsExpirienceItem } from '../components/ExperienceItem';
+import { PropsExpirienceItem } from '../lib/types';
+
+
 
 export const useExperience = () => {
     const [isModalOpen, setIsModalOpen] = useState<{ [key: string]: boolean }>({});

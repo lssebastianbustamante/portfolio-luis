@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface IconHeadLineProps {
+export interface IconHeadLineProps {
     title: string;
 }
 

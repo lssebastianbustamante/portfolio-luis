@@ -1,5 +1,7 @@
-import { LINKEDIN_RECOMMENDATIONS_URL } from "@/app/utils/getRecomendation"
-import { PropsExpirienceItem } from "../ExperienceItem"
+import { PropsExpirienceItem } from "./ExperienceItem"
+
+const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/recommendations"; // Replace with the actual URL
+
 interface Props {
     item: PropsExpirienceItem
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import IconHeadLine from './IconHeadLine';
+import { IconHeadLine } from '../../common';
+
 
 const About: React.FC = () => {
   return (

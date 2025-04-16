@@ -1,14 +1,13 @@
-
-import { PropsExpirienceItem } from "../ExperienceItem"
-import HighlightedProject from "./HighLightProject"
-import Responsabilities from "./Resposabilities"
-import Recommendation from "./Recomendation"
-
+import {
+    Responsibilities,
+    Recommendation,
+    HighlightedProject,
+    type PropsExpirienceItem
+} from '@/app/components/sections/Experience';
 
 interface Props {
     item: PropsExpirienceItem
 }
-
 
 const ModalContent: React.FC<Props> = ({ item }) => {
 
@@ -22,7 +21,7 @@ const ModalContent: React.FC<Props> = ({ item }) => {
                 <>
                     <p className="text-gray-700">{item.details.fullDescription}</p>
 
-                    <Responsabilities item={item}/>
+                    <Responsibilities item={item}/>
 
                     <HighlightedProject item={item} />
 

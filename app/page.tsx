@@ -1,9 +1,7 @@
-import Header from "./components/Header";
-import About from "./components/About";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
-import Footer from "./components/Footer";
+import { Header, Footer } from "./components/layout";
+import { About, Projects, Skills, Experience } from "./components/sections/index";
+
+
 
 export default function Home() {
   return (

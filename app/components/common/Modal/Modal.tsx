@@ -1,12 +1,14 @@
 import React from 'react';
+import { type PropsExpirienceItem } from '@/app/components/sections/Experience';
+import { ModalContent } from './';
 
-interface ModalProps {
+export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
-    children: React.ReactNode;
+    item: PropsExpirienceItem
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item }) => {
     if (!isOpen) return null;
 
     return (
@@ -23,13 +25,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                 <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 relative shadow-lg pointer-events-auto">
                     <button 
                         onClick={onClose}
-                        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 close-button"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    {children}
+                    <ModalContent item={item}/>
                 </div>
             </div>
         </>

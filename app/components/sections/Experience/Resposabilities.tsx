@@ -1,4 +1,5 @@
-import { PropsExpirienceItem } from "../ExperienceItem"
+import { PropsExpirienceItem } from "./ExperienceItem"
+
 
 interface Props {
     item: PropsExpirienceItem

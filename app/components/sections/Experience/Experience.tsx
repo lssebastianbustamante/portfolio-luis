@@ -1,6 +1,8 @@
 import React from 'react';
+import IconHeadLine from '../../common/Icons/Icons';
 import ExperienceItem from './ExperienceItem';
-import IconHeadLine from './IconHeadLine';
+
+
 
 const Experience: React.FC = () => {
   return (
