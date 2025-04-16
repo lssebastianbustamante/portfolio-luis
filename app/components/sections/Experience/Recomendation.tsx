@@ -1,4 +1,6 @@
-import { PropsExpirienceItem } from "./ExperienceItem"
+import { PropsExpirienceItem } from "./ExperienceItem";
+
+
 
 const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/recommendations"; // Replace with the actual URL
 

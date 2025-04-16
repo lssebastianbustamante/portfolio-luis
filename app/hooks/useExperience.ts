@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { getRecommendations } from '../utils/getRecomendation';
-import { PropsExpirienceItem } from '../lib/types';
-
+import { PropsExpirienceItem } from '../components/sections/Experience/ExperienceItem';
 
 
 export const useExperience = () => {

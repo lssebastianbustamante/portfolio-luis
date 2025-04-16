@@ -1,12 +1,14 @@
-import { SocialIcon } from "../../common/Icons/SocialIcon"
+
+import { SocialIcon } from "../../common"
 import { PropsExpirienceItem } from "./ExperienceItem"
+
 
 
 interface Props {
     item: PropsExpirienceItem
 }
 
-const HighlightedProject: React.FC<Props> = ({ item }) => {
+const HighlightProject: React.FC<Props> = ({ item }) => {
 
     if (!item?.details) return
 
@@ -45,4 +47,4 @@ const HighlightedProject: React.FC<Props> = ({ item }) => {
     )
 }
 
-export default HighlightedProject
+export default HighlightProject

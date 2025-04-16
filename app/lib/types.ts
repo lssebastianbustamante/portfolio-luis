@@ -13,30 +13,3 @@ export interface Project {
   stack: string[];
   link: string;
 }
-
-export interface Recommendation {
-  id: string;
-  organization: string;
-  text: string;
-  author: string;
-  relationship?: string;
-  date: Date;
-}
-
-export interface PropsExpirienceItem {
-  company: string;
-  role: string;
-  period: string;
-  description: string;
-  details?: {
-      fullDescription: string;
-      responsibilities: string[];
-      highlightedProject?: {
-          name: string;
-          details: string[];
-          repository?: string;
-      };
-      stack: string;
-      recomendations?: Recommendation[]
-  };
-}

@@ -1,4 +1,5 @@
-import { PropsExpirienceItem } from "../lib/types";
+import { PropsExpirienceItem } from "../components/sections";
+
 
 
 
@@ -15,7 +16,7 @@ export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
             description: "Desarrollo de soluciones personalizadas sobre VTEX IO",
             details: {
                 fullDescription: "Desarrollo soluciones personalizadas para una tienda B2B sobre VTEX IO, aplicando buenas prácticas y colaborando con equipos multidisciplinarios.",
-                responsibilities: [
+                responsibilitiesJob: [
                     "Desarrollo de componentes reutilizables en React + TypeScript",
                     "Integración de servicios vía GraphQL y contextos VTEX",
                     "Código limpio, optimización de performance y documentación",
@@ -40,7 +41,7 @@ export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
             description: "Desarrollo de soluciones personalizadas sobre VTEX IO",
             details: {
                 fullDescription: "Desarrollo de soluciones a medida, tanto en frontend como backend, integrando servicios y optimizando funcionalidades de negocio.",
-                responsibilities: [
+                responsibilitiesJob: [
                     "Desarrollo de componentes y microservicios",
                     "Integración con GTM y Google Analytics",
                     "Soporte en producción y resolución de incidencias",
@@ -76,7 +77,7 @@ export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
             description: "Desarrollo de soluciones personalizadas",
             details: {
                 fullDescription: "En CORADIR desarrollé y mantuve módulos internos de un CMS corporativo, brindando soluciones adaptadas a diferentes áreas de la empresa. Participé en la implementación de nuevas funcionalidades, optimización de consultas a base de datos y automatización de flujos internos.",
-                responsibilities: [
+                responsibilitiesJob: [
                     "Desarrollo de funcionalidades para el CMS interno con PHP y MySQL",
                     "Integración de bases de datos y consultas optimizadas",
                     "Soporte técnico a usuarios internos y áreas administrativas",
@@ -102,7 +103,7 @@ export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
             description: "Desarrollo de soluciones personalizadas",
             details: {
                 fullDescription: "Durante mi paso por Workana inicié mi camino como desarrollador, enfocándome en la maquetación de interfaces web. Participé en tareas de front-end, trabajando con HTML, CSS, JavaScript y jQuery para dar vida a secciones visuales de la plataforma.",
-                responsibilities: [
+                responsibilitiesJob: [
                     "Maquetación de páginas web responsivas con HTML y CSS",
                     "Dinamismo de interfaces con JavaScript y jQuery",
                     "Uso de Bootstrap para layouts reutilizables",

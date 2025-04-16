@@ -2,6 +2,8 @@ import { PropsExpirienceItem } from "./ExperienceItem";
 
 
 
+
+
 interface ExperienceCardProps {
     item: PropsExpirienceItem
     onClick: () => void;
