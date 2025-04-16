@@ -106,7 +106,7 @@ export async function getRecommendations(): Promise<PropsExpirienceItem[]> {
                     "Uso de Bootstrap para layouts reutilizables",
                     "Colaboración en pequeñas mejoras visuales y de usabilidad"
                 ],
-                stack: "Atención al detalle, Trabajo en equipo, Diseño de página, JavaScript, HTML, CSS, Git"
+                stack: "Trabajo en equipo, Diseño de página, JavaScript, HTML, CSS, Git"
             }
         }
     ];

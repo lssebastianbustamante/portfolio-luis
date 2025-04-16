@@ -13,10 +13,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         <>
             {/* Overlay semi-transparente */}
             <div 
-                className="fixed inset-0 bg-[#fb733c]/30 backdrop-blur-sm z-40 "
-                style={{
-                    height:"100vh"
-                }}
+                className="fixed inset-0 bg-[#fb733c]/30 backdrop-blur-sm z-40 overlay"
+               
                 onClick={onClose}
             />
             

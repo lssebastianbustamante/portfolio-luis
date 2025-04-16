@@ -14,7 +14,7 @@ const ModalContent: React.FC<Props> = ({ item }) => {
 
 
     return (
-        <div className="space-y-4 opacity-100">
+        <div className="space-y-4 opacity-100 modal-content">
             <h2 className="text-2xl font-bold">{item.company}</h2>
             <h3 className="text-xl font-semibold">{item.role}</h3>
 
@@ -26,10 +26,7 @@ const ModalContent: React.FC<Props> = ({ item }) => {
 
                     <HighlightedProject item={item} />
 
-                    <div className="mt-4 pt-4 border-t flex">
-                        <p className="font-semibold mr-2">Stack: </p>
-                        <p className="text-gray-700">{item.details.stack}</p>
-                    </div>
+                    
 
                    <Recommendation item={item} />
                 </>

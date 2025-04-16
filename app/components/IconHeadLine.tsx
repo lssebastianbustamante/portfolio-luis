@@ -38,18 +38,24 @@ const IconHeadLine: React.FC<IconHeadLineProps> = ({ title }) => {
     };
 
     return (
-        <span className="flex h-[1.1em] w-[auto] justify-center items-center mr-4">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-                className="h-[1em] w-auto fill-current stroke-current"
-                style={{
-                     height: "1em", width: "1.5em"
-                }}
-            >
-                {getIcon(title)}
-            </svg>
-        </span>
+
+        <div className="icon-container text-3xl font-semibold mb-6  pb-2 font-noto">
+
+            <span className="flex h-[1.1em] w-[auto] justify-center items-center mr-4">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                    className="h-[1em] w-auto fill-current stroke-current"
+                    style={{
+                        height: "1em", width: "1.5em"
+                    }}
+                >
+                    {getIcon(title)}
+                </svg>
+            </span>
+            <span >{title.toLocaleUpperCase()}</span>
+        </div>
+
     );
 };
 
