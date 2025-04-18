@@ -2,7 +2,7 @@ import { PropsExperienceItem } from "./ExperienceItem";
 
 
 
-const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/recommendations"; // Replace with the actual URL
+const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/in/luissb-bustamante/details/recommendations"; // Replace with the actual URL
 
 interface Props {
     item: PropsExperienceItem
