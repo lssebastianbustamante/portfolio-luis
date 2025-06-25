@@ -1,3 +1,4 @@
+import FormLeads from "./components/form/FormLeads";
 import Footer from "./components/layout/Footer/Footer";
 import Header from "./components/layout/Header/Header";
 import About from "./components/sections/About/About";
@@ -19,13 +20,19 @@ export default function Home() {
       paddingTop: "3rem",
     }}>
       <section className="max-w-5xl mx-auto main-container" >
-        <Header/>
+        <Header />
+
         <About />
-        <Experience/>
-        <Projects/>
-        <Skills/>
+        <Experience />
+        <Projects />
+        <Skills />
+        <FormLeads
+          backgroundContainer="#e95b2f"
+          titleBlock="Get in Touch"
+          subTitleBlock="Feel free to reach out for collaborations or just a chat!"
+          textButton="Contact Me" dataEntity={""} />
       </section>
-      <Footer/>
+      <Footer />
     </main>
   );
 }

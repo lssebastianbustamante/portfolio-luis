@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Comfortaa, Noto_Sans } from "next/font/google";
-import "./styles/globals.css";
 
+import "./styles/globals.css";
+import IntlClientProvider from "./IntlClientProvider";
 const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
   subsets: ["vietnamese", "latin"],
@@ -30,7 +31,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${noto.variable} ${comfortaa.variable} antialiased`}>
-        {children}
+        <IntlClientProvider>
+
+          {children}
+        </IntlClientProvider>
       </body>
     </html>
   );
