@@ -1,0 +1,166 @@
+version: '3.8'
+
+services:
+  # Frontend - Next.js Client
+  client:
+    container_name: portfolio-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_EXPRESS_URL=http://api-express-mongo:8081
+      - NEXT_PUBLIC_API_NEST_URL=http://api-nest-mysql:3001
+      - NEXT_PUBLIC_GATEWAY_URL=http://gateway:1111
+    depends_on:
+      - api-express-mongo
+      - api-nest-mysql
+      - gateway
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+  # API Express MongoDB
+  api-express-mongo:
+    container_name: api-express-mongo
+    restart: always
+    build: 
+      context: ./services/api-express-mongo/
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=8081
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo-db:27017/tours
+      - MONGODB_HOST=mongo-db
+      - MONGODB_PORT=27017
+      - MONGODB_DB_NAME=tours
+      - NATS_URL=nats://nats:4222
+      - NATS_HOST=nats
+      - NATS_PORT=4222
+    depends_on:
+      - mongo-db
+      - nats
+    networks:
+      - portfolio-network
+
+  # API NestJS MySQL
+  api-nest-mysql:
+    container_name: api-nest-mysql
+    restart: always
+    build:
+      context: ./services/api-nest-typeorm-mysql/
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"  # ✅ Corregido - puerto correcto
+    environment:
+      - NODE_DOCKER_PORT=3001
+      - NODE_ENV=production
+      - DB_TYPE=mysql
+      - DB_HOST=mysql-db
+      - DB_USERNAME=root
+      - DB_PASSWORD=23111207
+      - DB_NAME=nestdb
+      - DB_LOCAL_PORT=3307
+      - DB_DOCKER_PORT=3306
+    depends_on:
+      - mysql-db
+    networks:
+      - portfolio-network
+
+  # Gateway Service
+  gateway:
+    container_name: portfolio-gateway
+    restart: always
+    build:
+      context: ./services/gateway/
+      dockerfile: Dockerfile
+    ports:
+      - "1111:1111"
+    environment:
+      - PORT=1111
+      - NODE_ENV=production
+      - NATS_URL=nats://nats:4222
+      - NATS_HOST=nats
+      - NATS_PORT=4222
+    depends_on:
+      - nats
+      - api-express-mongo
+      - api-nest-mysql
+    networks:
+      - portfolio-network
+
+  # MongoDB for Tours API
+  mongo-db:
+    container_name: mongo-db
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: tours
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-db-data:/data/db
+    networks:
+      - portfolio-network
+
+  # MySQL Database
+  mysql-db:
+    container_name: mysql-db
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=23111207
+      - MYSQL_DATABASE=nestdb
+      - MYSQL_USER=portfolio
+      - MYSQL_PASSWORD=portfolio123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - portfolio-network
+
+  # NATS Message Queue
+  nats:
+    container_name: portfolio-nats
+    image: nats:latest
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    command: "--server_name portfolio -js -sd /data --cluster_name portfolio --http_port 8222"
+    volumes:
+      - nats-data:/data
+    networks:
+      - portfolio-network
+
+  # HAProxy Load Balancer
+  haproxy:
+    container_name: portfolio-haproxy
+    image: haproxy:latest
+    ports:
+      - "80:80"
+      - "8404:8404"
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - client
+      - api-express-mongo
+      - api-nest-mysql
+      - gateway
+    networks:
+      - portfolio-network
+
+# Networks
+networks:
+  portfolio-network:
+    driver: bridge
+
+# Volumes
+volumes:
+  mongo-db-data:
+  mysql-data:
+  nats-data:

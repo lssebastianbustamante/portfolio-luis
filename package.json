@@ -1,32 +1,35 @@
 {
-  "name": "portfolio-luis",
+  "name": "portfolio-luis-monorepo",
   "version": "1.0.0",
+  "description": "Portfolio Luis - Arquitectura de Microservicios",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.13.8",
-    "@react-google-maps/api": "^2.19.2",
-    "@types/google.maps": "^3.58.1",
-    "classnames": "^2.2.6",
-    "graphql": "^16.11.0",
-    "graphql-tag": "^2.12.6",
-    "next": "15.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-intl": "^7.1.11",
-    "react-select": "^5.10.1"
+    "dev": "docker-compose up -d --build",
+    "dev:logs": "docker-compose up --build",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "restart": "docker-compose restart",
+    "clean": "docker-compose down -v --remove-orphans",
+    "rebuild": "docker-compose down && docker-compose up -d --build",
+    "status": "docker-compose ps",
+    "logs": "docker-compose logs -f",
+    "logs:client": "docker-compose logs -f client",
+    "logs:api-express": "docker-compose logs -f api-express-mongo",
+    "logs:api-nest": "docker-compose logs -f api-nest-mysql",
+    "logs:gateway": "docker-compose logs -f gateway",
+    "install:all": "npm run install:client && npm run install:services",
+    "install:client": "cd client && npm install",
+    "install:services": "cd services/api-express-mongo && npm install && cd ../api-nest-typeorm-mysql && npm install && cd ../gateway && npm install",
+    "dev:local": "concurrently \"npm run dev:client\" \"npm run dev:api-express\" \"npm run dev:api-nest\" \"npm run dev:gateway\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:api-express": "cd services/api-express-mongo && npm start",
+    "dev:api-nest": "cd services/api-nest-typeorm-mysql && npm run start:dev",
+    "dev:gateway": "cd services/gateway && npm start"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/google.maps": "^3.58.1",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+    "@types/node": "^24.0.4",
+    "concurrently": "^8.2.2"
+  },
+  "author": "Luis Bustamante",
+  "license": "MIT"
 }

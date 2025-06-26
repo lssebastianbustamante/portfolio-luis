@@ -1,111 +1,282 @@
-# Portfolio Luis Bustamante
+# Portfolio Luis - Arquitectura de Microservicios
 
-Portfolio personal desarrollado con Next.js que muestra mi experiencia profesional, proyectos y habilidades técnicas.
+![Portfolio](https://img.shields.io/badge/Portfolio-Luis%20Bustamante-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![Docker](https://img.shields.io/badge/docker-compatible-blue)
+![Next.js](https://img.shields.io/badge/Next.js-15.3.0-black)
 
-## 🚀 Tecnologías
+## 📋 Descripción
 
-- React 18
-- Next.js 14
-- TypeScript
-- Tailwind CSS
-- Context API
-- React Hooks
+Portfolio personal de Luis Bustamante construido con una arquitectura de microservicios moderna. El proyecto incluye un frontend desarrollado en Next.js con TypeScript y múltiples servicios backend para demostrar diferentes tecnologías y patrones de desarrollo.
 
-## ✨ Características
+## 🚀 Inicio Rápido
 
-- Diseño responsive
-- Modo oscuro/claro
-- Animaciones suaves
-- Componentes modulares
-- SEO optimizado
-- Integración con LinkedIn para recomendaciones
+Para iniciar rápidamente el proyecto, consulta: [QUICK-START.md](./QUICK-START.md)
 
-## 📁 Estructura del Proyecto
-
-```
-├── app/
-│   ├── components/
-│   │   ├── experience/
-│   │   │   ├── ExperienceCard.tsx
-│   │   │   ├── ExperienceItem.tsx
-│   │   │   ├── HighLightProject.tsx
-│   │   │   ├── ModalContent.tsx
-│   │   │   └── Responsibilities.tsx
-│   │   ├── Header.tsx
-│   │   ├── IconHeadLine.tsx
-│   │   └── Modal.tsx
-│   ├── hooks/
-│   │   └── useExperience.ts
-│   ├── utils/
-│   │   └── getRecommendation.ts
-│   ├── layout.tsx
-│   └── page.tsx
-├── public/
-│   └── Luis-Bustamante.pdf
-```
-
-## 🛠️ Instalación
-
-1. Clona el repositorio:
 ```bash
-git clone https://github.com/tuusuario/portfolio-luis.git
+# Comando básico para iniciar todo
+docker-compose up -d --build
 ```
 
-2. Instala las dependencias:
+📖 **Documentación completa**: [DOCKER.md](./DOCKER.md)
+
+## 🏗️ Arquitectura del Proyecto
+
+```
+portfolio-luis/
+├── client/                    # Frontend - Next.js 15 con TypeScript
+├── services/                  # Microservicios Backend
+│   ├── api-express-mongo/     # API REST con Express.js y MongoDB
+│   ├── api-nest-typeorm-mysql/# API REST con NestJS, TypeORM y MySQL
+│   └── gateway/              # API Gateway
+├── haproxy/                  # Load Balancer
+└── docker-compose.yml        # Orquestación de contenedores
+```
+
+## 🚀 Tecnologías Utilizadas
+
+### Frontend (Client)
+- **Framework**: Next.js 15.3.0 con App Router
+- **Lenguaje**: TypeScript 5
+- **Estilos**: Tailwind CSS 4
+- **Internacionalización**: React Intl
+- **Mapas**: Google Maps API
+- **GraphQL**: Apollo Client
+- **UI Components**: Componentes personalizados
+
+### Backend Services
+
+#### API Express MongoDB
+- **Framework**: Express.js
+- **Base de Datos**: MongoDB con Mongoose
+- **Comunicación**: NATS para messaging
+- **Containerización**: Docker
+
+#### API NestJS TypeORM MySQL
+- **Framework**: NestJS
+- **Base de Datos**: MySQL con TypeORM
+- **Testing**: Jest
+- **Containerización**: Docker
+
+#### Gateway
+- **Framework**: Express.js
+- **Función**: API Gateway para routing y load balancing
+
+### Infrastructure
+- **Containerización**: Docker & Docker Compose
+- **Load Balancer**: HAProxy
+- **Message Queue**: NATS
+
+## 📦 Instalación y Configuración
+
+### Prerrequisitos
+- Node.js 18+
+- Docker y Docker Compose
+- Git
+
+### 1. Clonar el Repositorio
 ```bash
+git clone <repository-url>
 cd portfolio-luis
-npm install
 ```
 
-3. Ejecuta el servidor de desarrollo:
+### 2. Configuración de Variables de Entorno
 ```bash
+# Copiar archivo de ejemplo
+cp .env.example .env
+# Editar según tu entorno
+```
+
+### 3. Ejecutar con Docker (Opción Recomendada)
+```bash
+# Construir e iniciar todos los servicios
+docker-compose up -d --build
+```
+
+### 4. Desarrollo Local (Solo Frontend)
+```bash
+cd client
+npm install
 npm run dev
 ```
 
-4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+## 🛠️ Scripts Disponibles
 
-## 🔧 Configuración
+### Docker Commands
+```bash
+# Construcción e inicio
+docker-compose up -d --build      # Construir e iniciar todos los servicios
+docker-compose up -d              # Iniciar servicios existentes
+docker-compose down               # Detener servicios
+docker-compose restart            # Reiniciar todos los servicios
 
-1. Modifica el archivo `app/utils/getRecommendation.ts` para agregar tus recomendaciones.
-2. Actualiza el CV en `public/Luis-Bustamante.pdf`.
-3. Personaliza los componentes en la carpeta `components/`.
+# Monitoreo
+docker-compose ps                 # Ver estado de servicios
+docker-compose logs -f            # Ver logs en tiempo real
+docker-compose logs -f [service]  # Ver logs de un servicio específico
 
-## 📱 Componentes Principales
+# Limpieza
+docker-compose down -v            # Detener y eliminar volúmenes
+```
 
-### ExperienceItem
-Muestra la experiencia laboral con:
-- Detalles del rol
-- Responsabilidades
-- Proyectos destacados
-- Stack tecnológico
-- Recomendaciones de LinkedIn
+### Frontend (Client)
+```bash
+npm run dev        # Desarrollo con hot reload
+npm run build      # Build para producción
+npm run start      # Servidor de producción
+```
 
-### Header
-- Información personal
-- Botón para descargar CV
-- Enlaces a redes sociales
+### API Express MongoDB
+```bash
+npm start          # Desarrollo con nodemon
+```
 
-### Modal
-Componente reutilizable para mostrar información detallada.
+### API NestJS TypeORM MySQL
+```bash
+npm run start:dev  # Desarrollo con watch mode
+npm run build      # Build para producción
+npm run start:prod # Servidor de producción
+npm run test       # Ejecutar tests
+npm run test:e2e   # Tests end-to-end
+```
 
-## 🌐 Despliegue
+## 🌐 Endpoints y Servicios
 
-El proyecto está optimizado para ser desplegado en Vercel:
+### Frontend
+- **Puerto**: 3000
+- **URL**: http://localhost:3000
 
-1. Crea una cuenta en [Vercel](https://vercel.com)
-2. Conecta tu repositorio de GitHub
-3. Despliega automáticamente
+### API Services
+- **Express MongoDB**: Puerto 8081
+- **NestJS MySQL**: Puerto 3001
+- **Gateway**: Puerto configurado
+- **HAProxy**: Load balancer
+
+## 📁 Estructura de Carpetas Detallada
+
+### Client (Frontend)
+```
+client/
+├── app/                      # App Router de Next.js
+│   ├── components/           # Componentes reutilizables
+│   │   ├── common/          # Componentes comunes (Icons, Modal)
+│   │   ├── form/            # Componentes de formularios
+│   │   ├── layout/          # Componentes de layout (Header, Footer)
+│   │   └── sections/        # Secciones principales del portfolio
+│   ├── hooks/               # Custom hooks
+│   ├── lib/                 # Configuraciones y tipos
+│   ├── styles/              # Estilos globales
+│   └── utils/               # Utilidades
+├── public/                  # Assets estáticos
+└── config files             # Configuraciones (Next, Tailwind, ESLint, etc.)
+```
+
+### Services (Backend)
+```
+services/
+├── api-express-mongo/       # Microservicio Express + MongoDB
+│   └── src/
+│       ├── controllers/     # Controladores REST
+│       ├── models/          # Modelos de Mongoose
+│       ├── routes/          # Definición de rutas
+│       ├── nats/           # Configuración NATS
+│       └── utils/          # Utilidades y middleware
+├── api-nest-typeorm-mysql/  # Microservicio NestJS + MySQL
+│   └── src/
+│       ├── db/             # Configuración de base de datos
+│       ├── post/           # Módulo de posts
+│       ├── users/          # Módulo de usuarios
+│       └── app files       # Archivos principales de la app
+└── gateway/                # API Gateway
+    └── src/                # Código fuente del gateway
+```
+
+## 🔧 Configuración de Desarrollo
+
+### Variables de Entorno
+Configurar las siguientes variables según el entorno:
+
+```env
+# MongoDB Service
+MONGO_HOST=mongotours
+MONGO_DB=tours
+MONGO_PORT=27017
+LOCAL_PORT=8081
+NATS_HOST=demo.nats.io
+NATS_PORT=4222
+
+# MySQL Service
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+DATABASE_USER=root
+DATABASE_PASSWORD=password
+DATABASE_NAME=portfolio
+```
+
+## 🐳 Docker
+
+### Construcción de Imágenes
+```bash
+# Construir todos los servicios
+docker-compose build
+
+# Construir un servicio específico
+docker-compose build toursapi
+```
+
+### Gestión de Contenedores
+```bash
+# Iniciar servicios
+docker-compose up -d
+
+# Ver logs
+docker-compose logs -f [service-name]
+
+# Detener servicios
+docker-compose down
+```
+
+## 🧪 Testing
+
+### Frontend
+```bash
+cd client
+# Agregar tests según necesidad
+```
+
+### Backend NestJS
+```bash
+cd services/api-nest-typeorm-mysql
+npm run test           # Unit tests
+npm run test:e2e       # Integration tests
+npm run test:cov       # Coverage report
+```
+
+## 📈 Monitoreo y Logs
+
+- Los logs de cada servicio están disponibles via `docker-compose logs`
+- HAProxy proporciona métricas de load balancing
+- Configuración de health checks en Docker Compose
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crear una rama para la feature (`git checkout -b feature/AmazingFeature`)
+3. Commit los cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
 
 ## 📄 Licencia
 
-MIT
+Este proyecto es parte del portfolio personal de Luis Bustamante.
 
-## 👤 Autor
+## 📞 Contacto
 
 **Luis Bustamante**
-* LinkedIn: [@luissb-bustamante](https://www.linkedin.com/in/luissb-bustamante/)
-* GitHub: [@lssebastianbustamante](https://github.com/lssebastianbustamante)
+- LinkedIn: [https://www.linkedin.com/in/luissb-bustamante/]
+- Email: [luissebastianbustamante@gmail.com]
+- Portfolio: [https://portfolio-luis-iota.vercel.app/]
 
-## 🤝 Contribuciones
+---
 
-Las contribuciones, problemas y solicitudes de funciones son bienvenidas. No dudes en revisar la página de [issues](https://github.com/tuusuario/portfolio-luis/issues) si quieres contribuir.
+⭐ Si te gusta este proyecto, ¡no olvides darle una estrella!

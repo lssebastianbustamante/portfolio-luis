@@ -1,0 +1,43 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+
+# VS Code
+.vscode/
+
+# IDE
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+
+# README
+README.md
+
+# TypeScript build
+dist/
+build/
