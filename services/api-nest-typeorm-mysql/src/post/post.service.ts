@@ -12,17 +12,25 @@ export class PostService {
     private usersService: UsersService,
   ) {}
 
-  async createPost(post: CreatePostDto) {
-    const userFound = await this.usersService.getUser(post.authorId);
+  async createPost(post: CreatePostDto): Promise<Post> {
+    try {
+      const userFound = await this.usersService.getUser(post.authorId);
+      
+      if (!userFound) {
+        throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
+      }
 
-    if (!userFound)
-      return new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
-
-    const newPost = this.postRepository.create(post);
-    return this.postRepository.save(newPost);
+      const newPost = this.postRepository.create(post);
+      return this.postRepository.save(newPost);
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException('Error al crear post', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
-  getPosts() {
+  async getPosts(): Promise<Post[]> {
     return this.postRepository.find({
       relations: ['author'],
     });

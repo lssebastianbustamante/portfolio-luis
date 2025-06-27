@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
 import tourRouter from './routes/tourRoutes'
+import leadsRouter from './routes/leads';
 import cors from "cors";
 import { AppError } from './utils/appError';
 import globalErrorHandler from './controllers/errorController';
@@ -28,7 +29,8 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.use('/api/v1/search', tourRouter);
+app.use('/api/v1/', tourRouter);
+app.use('/api/v1/', leadsRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can´t find ${req.originalUrl} on this server`, 404));

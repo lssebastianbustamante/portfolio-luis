@@ -340,7 +340,9 @@ export const useFormLead = (
         const isValid = requiredFields.every((field: string) =>
             validateAndUpdateField(field, formData[field as keyof typeof formData] as string)
         )
-
+        console.log('Validación de campos:', isValid)
+        // Validar el formulario completo
+        console.log('Validación del formulario:', isValidFormToSubmit())
         if (!isValid) {
             setErrors(prev => ({
                 ...prev,
@@ -356,46 +358,34 @@ export const useFormLead = (
                 status: STATUS.LOADING
             }))
 
-            let geocoordinates = { latitud: 0, longitud: 0 }
-            let sellerName = 'Sin distribuidor en la dirección ingresada'
+            // Enviar a tu API Express
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_EXPRESS_URL}/api/v1/leads`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    createdAt: new Date().toISOString(),
+                    source: 'portfolio-contact-form'
+                })
+            })
 
-            try {
-                const formatAddress = ADDRESS_FORMATTERS[country];
-                if (!formatAddress) {
-                    throw new Error(`País no soportado: ${country}`);
-                }
-
-                const fullAddress = formatAddress(formData);
-                geocoordinates = { latitud: 123.456, longitud: 78.90 }
-
-
-                const seller = {
-                    sellerId: 'demo-seller-id',
-                    sellerName: 'Distribuidor Demo'
-                }
-                if ('sellerName' in seller) {
-                    sellerName = seller.sellerName;
-                }
-            } catch (error) {
-                console.error('Error de geocodificación:', error);
+            if (!response.ok) {
+                throw new Error('Error al enviar el formulario')
             }
 
-            const res = { DocumentId: 'demo-id-123' }
-
-            if (typeof res.DocumentId === 'string') {
-                setFormState(prev => ({
-                    ...prev,
-                    hasSubmitted: true,
-                    status: STATUS.FINISH
-                }))
-            }
-        } catch (error) {
-            console.error('Error al enviar el formulario:', error)
-            setFormState(prev => ({ ...prev, status: STATUS.IDLE }))
-            setErrors(prev => ({
+            const result = await response.json()
+            
+            setFormState(prev => ({
                 ...prev,
-                submit: 'Error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.'
+                hasSubmitted: true,
+                status: STATUS.FINISH
             }))
+            
+        } catch (error) {
+            console.error('Error:', error)
+            setFormState(prev => ({ ...prev, status: STATUS.ERROR }))
         } finally {
             setFormState(prev => ({ ...prev, isSubmitting: false }))
         }

@@ -2,11 +2,6 @@ import { COMMON_FIELDS } from './commonFields'
 
 export const REQUIRED_FIELDS_ARG = [
     'nombre',
-    'cuit',
-    'tipoNegocio',
-    'calle',
-    'altura',
-    'codigoPostal',
     'localidad',
     'provincia',
     'telefono',

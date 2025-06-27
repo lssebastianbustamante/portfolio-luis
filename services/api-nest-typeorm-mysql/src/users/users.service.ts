@@ -14,7 +14,7 @@ export class UsersService {
     @InjectRepository(Profile) private profileRepository: Repository<Profile>,
   ) {}
 
-  async createUser(user: CreateUserDto) {
+  async createUser(user: CreateUserDto): Promise<User> {
     const userFound = await this.userRepository.findOne({
       where: {
         username: user.username,
@@ -22,76 +22,68 @@ export class UsersService {
     });
 
     if (userFound) {
-      return new HttpException('El usuario ya existe', HttpStatus.CONFLICT);
+      throw new HttpException('El usuario ya existe', HttpStatus.CONFLICT);
     }
+    
     const newUser = this.userRepository.create(user);
     return this.userRepository.save(newUser);
   }
 
-  getUsers() {
+  async getUsers(): Promise<User[]> {
     return this.userRepository.find({
       relations: ['posts', 'profile'],
     });
   }
 
-  async getUser(id: number) {
+  async getUser(id: number): Promise<User> {
     const userFound = await this.userRepository.findOne({
-      where: {
-        id,
-      },
+      where: { id },
       relations: ['posts', 'profile'],
     });
 
     if (!userFound) {
-      return new HttpException('Usuraio no encontrado', HttpStatus.NOT_FOUND);
+      throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
     }
 
     return userFound;
   }
 
-  async deleteUser(id: number) {
+  async deleteUser(id: number): Promise<{ affected: number }> {
     const result = await this.userRepository.delete({ id });
 
     if (result.affected === 0) {
-      return new HttpException('Usuario no encotrado', HttpStatus.NOT_MODIFIED);
+      throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
     }
 
-    return result;
+    return { affected: result.affected ?? 0 };
   }
 
-  async updateUser(id: number, user: UpdateUserDto) {
+  async updateUser(id: number, user: UpdateUserDto): Promise<User> {
     const userFound = await this.userRepository.findOne({
-      where: {
-        id,
-      },
+      where: { id },
     });
 
     if (!userFound) {
-      return new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
+      throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
     }
 
     const userUpdate = Object.assign(userFound, user);
-
     return this.userRepository.save(userUpdate);
   }
 
-  async createProfile(id: number, profile: CreateUserProfileDto) {
+  async createProfile(id: number, profile: CreateUserProfileDto): Promise<User> {
     const userFound = await this.userRepository.findOne({
-      where: {
-        id,
-      },
+      where: { id },
     });
 
     if (!userFound) {
-      return new HttpException('Useuario no encontrado', HttpStatus.NOT_FOUND);
+      throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
     }
 
     const newProfile = this.profileRepository.create(profile);
-
     const savedProfile = await this.profileRepository.save(newProfile);
 
     userFound.profile = savedProfile;
-
     return this.userRepository.save(userFound);
   }
 }
