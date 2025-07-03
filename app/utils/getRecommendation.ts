@@ -5,10 +5,27 @@ import { PropsExperienceItem } from "../components/sections/Experience/Experienc
 export async function getRecommendations(): Promise<PropsExperienceItem[]> {
     // Datos de ejemplo
     const mockRecommendations: PropsExperienceItem[] = [
+                {
+            company: "Solu",
+            role: "Ssr Fullstack Developer",
+            period: "May 2025 – Presente",
+            description: "Desarrollo de soluciones personalizadas sobre VTEX IO",
+            details: {
+                fullDescription: "Implementé componentes VTEX IO para tienda B2B mejorando funcionalidades de checkout e inventario. Integré servicios externos (ERP y logística) mediante esquemas de datos optimizados. Colaboré con equipos funcionales en revisión técnica de requerimientos para acelerar entregas.",
+                responsibilitiesJob: [
+                    "Desarrollo de componentes personalizados y reutilizables para entornos VTEX IO.",
+                    "Integración de APIs REST y GraphQL en flujos de checkout y catálogo.",
+                    "Colaboración en definición de tareas técnicas con diseño, QA y producto.",
+                    "Refactor de código legacy y mejoras de performance en páginas de alta conversión.",
+                    "Revisión de PRs y soporte técnico a otros desarrolladores del equipo."
+                ],
+                stack: "React, TypeScript, RESTful APIs / GraphQL, VTEX IO, Context API, Node.js, Git"
+            }
+        },
         {
             company: "Infracommerce",
             role: "Ssr Fullstack Developer",
-            period: "Ago 2024 – Presente",
+            period: "Ago 2024 – May 2025",
             description: "Desarrollo de soluciones personalizadas sobre VTEX IO",
             details: {
                 fullDescription: "Desarrollo soluciones personalizadas para una tienda B2B sobre VTEX IO, aplicando buenas prácticas y colaborando con equipos multidisciplinarios.",
