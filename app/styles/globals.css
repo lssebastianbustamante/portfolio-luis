@@ -78,6 +78,12 @@ main {
   }
 }
 
+span.skill {
+    text-transform: capitalize;
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
 .about-us {
   p {
     font-family: 14px;
