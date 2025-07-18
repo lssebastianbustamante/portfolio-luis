@@ -44,7 +44,17 @@ export async function getRecommendations(): Promise<PropsExperienceItem[]> {
                     ],
                     repository: "https://github.com/lssebastianbustamante/custom-flags"
                 },
-                stack: "React, TypeScript, RESTful APIs / GraphQL, VTEX IO, Context API, Node.js, Git"
+                stack: "React, TypeScript, RESTful APIs / GraphQL, VTEX IO, Context API, Node.js, Git",
+                recomendationsJob: [
+                    {
+                        id: "1",
+                        organization: "Infracommerce",
+                        author: "Lucas Conde",
+                        relationship: "Lucas está a cargo del equipo de desarrollo en Infracommerce",
+                        text: "Luis es una excelente persona y un gran profesional. Siempre predispuesto y listo para los desafíos. Un placer trabajar con él !",
+                        date: new Date("2025-04-24"),
+                    }
+                ]
             }
         },
         {
