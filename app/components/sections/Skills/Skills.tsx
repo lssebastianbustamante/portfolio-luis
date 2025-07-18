@@ -6,16 +6,16 @@ import SkillModal from './SkillModal';
 
 const skillDetails: Record<string, { level: string; experience: string; projects: string }> = {
     // Frontend
-    "React": { level: "Avanzado", experience: "5+ años", projects: "15+ proyectos" },
+    "React": { level: "Avanzado", experience: "4+ años", projects: "15+ proyectos" },
     "Next.js": { level: "Intermedio", experience: "3+ años", projects: "8+ aplicaciones" },
     "TypeScript": { level: "Avanzado", experience: "4+ años", projects: "15+ proyectos" },
     "JavaScript (ES6+)": { level: "Avanzado", experience: "6+ años", projects: "25+ proyectos" },
     "GraphQL": { level: "Intermedio", experience: "2+ años", projects: "4+ APIs" },
     "Apollo Client": { level: "Intermedio", experience: "2+ años", projects: "3+ aplicaciones" },
-    "HTML5": { level: "Avanzado", experience: "7+ años", projects: "30+ sitios web" },
+    "HTML5": { level: "Avanzado", experience: "6+ años", projects: "30+ sitios web" },
     "CSS3 / Sass": { level: "Avanzado", experience: "6+ años", projects: "25+ proyectos" },
     "Tailwind CSS": { level: "Intermedio", experience: "3+ años", projects: "12+ proyectos" },
-    "CSS Animations": { level: "Avanzado", experience: "4+ años", projects: "10+ proyectos" },
+    "CSS Animations": { level: "Avanzado", experience: "5+ años", projects: "10+ proyectos" },
     "Bootstrap": { level: "Avanzado", experience: "5+ años", projects: "15+ proyectos" },
     "jQuery": { level: "Avanzado", experience: "4+ años", projects: "8+ proyectos" },
     "Jest": { level: "Principiante", experience: "2+ años", projects: "6+ proyectos" },
@@ -23,8 +23,8 @@ const skillDetails: Record<string, { level: string; experience: string; projects
     "Hooks": { level: "Avanzado", experience: "4+ años", projects: "12+ proyectos" },
     
     // Backend & APIs
-    "Node.js": { level: "Avanzado", experience: "5+ años", projects: "15+ APIs" },
-    "Express": { level: "Avanzado", experience: "5+ años", projects: "12+ servidores" },
+    "Node.js": { level: "Avanzado", experience: "4+ años", projects: "15+ APIs" },
+    "Express": { level: "Avanzado", experience: "4+ años", projects: "12+ servidores" },
     "NestJS": { level: "Intermedio", experience: "3+ años", projects: "8+ APIs" },
     "RESTful APIs": { level: "Avanzado", experience: "5+ años", projects: "20+ APIs" },
     "GraphQL APIs": { level: "Principiante", experience: "2+ años", projects: "5+ APIs" },
@@ -38,8 +38,8 @@ const skillDetails: Record<string, { level: string; experience: string; projects
     "express-validator": { level: "Intermedio", experience: "3+ años", projects: "8+ APIs" },
     
     // DevOps
-    "Docker": { level: "Intermedio", experience: "3+ años", projects: "8+ aplicaciones" },
-    "Docker Compose": { level: "Intermedio", experience: "3+ años", projects: "6+ proyectos" },
+    "Docker": { level: "Principiante", experience: "2+ años", projects: "8+ aplicaciones" },
+    "Docker Compose": { level: "Principiante", experience: "2+ años", projects: "6+ proyectos" },
     "Vercel": { level: "Intermedio", experience: "3+ años", projects: "15+ deployments" },
     "dotenv": { level: "Avanzado", experience: "4+ años", projects: "15+ proyectos" },
     "Health-checks": { level: "Intermedio", experience: "2+ años", projects: "6+ APIs" },
@@ -55,14 +55,14 @@ const skillDetails: Record<string, { level: string; experience: string; projects
     "Agile / Scrum": { level: "Avanzado", experience: "5+ años", projects: "15+ proyectos" },
     "Clean Architecture": { level: "Intermedio", experience: "3+ años", projects: "8+ proyectos" },
     "Design Patterns": { level: "Avanzado", experience: "4+ años", projects: "10+ proyectos" },
-    "Modularización": { level: "Avanzado", experience: "5+ años", projects: "20+ proyectos" },
+    "Modularización": { level: "Avanzado", experience: "4+ años", projects: "20+ proyectos" },
     "Arquitectura por capas": { level: "Intermedio", experience: "3+ años", projects: "8+ proyectos" },
     
     // Control de versiones
     "Git": { level: "Avanzado", experience: "6+ años", projects: "35+ repositorios" },
     "GitHub": { level: "Avanzado", experience: "4+ años", projects: "35+ proyectos" },
-    "Pull Requests": { level: "Avanzado", experience: "4+ años", projects: "100+ PRs" },
-    "Code Reviews": { level: "Avanzado", experience: "4+ años", projects: "50+ reviews" }
+    "Pull Requests": { level: "Avanzado", experience: "3+ años", projects: "100+ PRs" },
+    "Code Reviews": { level: "Avanzado", experience: "3+ años", projects: "50+ reviews" }
 };
 
 const skillsData = {
