@@ -143,7 +143,7 @@ const ProjectModalContent: React.FC<ProjectModalContentProps> = ({ project }) =>
                     href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+                    className="px-4 py-2 bg-gradient-to-r from-[#e95b2f] to-[#f97316] text-white rounded-lg font-medium hover:shadow-xl"
                 >
                     Ver en GitHub
                 </a>

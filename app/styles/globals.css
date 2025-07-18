@@ -107,6 +107,16 @@ main {
   }
 }
 
+.tech {
+  min-height: 6rem;
+  span {
+  font-size: 1rem;
+  @media screen and (max-width: 787px) {
+    font-size: 0.8rem;
+    
+  }
+}
+}
 span.skill {
     text-transform: capitalize;
     color: var(--text-dark);

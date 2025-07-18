@@ -14,7 +14,7 @@ const ProjectCard: React.FC<Props> = ({ title, description, link, stack, complex
     const getComplexityColor = (complexity: string) => {
         switch (complexity) {
             case 'Avanzado':
-                return 'bg-gradient-to-r from-red-500 to-orange-500';
+  return 'bg-gradient-to-r from-red-500 to-orange-500';
             case 'Intermedio':
                 return 'bg-gradient-to-r from-yellow-500 to-orange-500';
             case 'Principiante':
@@ -40,22 +40,22 @@ const ProjectCard: React.FC<Props> = ({ title, description, link, stack, complex
     };
 
     return (
-        <div className="project-card border rounded-xl p-6 shadow-md hover:shadow-lg hover:shadow-[#93b7be] transition-all bg-white group">
+        <div className="project-card border rounded-xl p-6 shadow-md hover:shadow-lg hover:shadow-[#93b7be] transition-all bg-white">
             <div className="flex justify-between items-start mb-3">
                 <h3 className="text-xl font-semibold text-[#000000] group-hover:text-[#fb733c] transition-colors">{title}</h3>
-                <div className="type flex gap-2">
+                {/* <div className="type flex gap-2">
                     <span className={`px-2 py-1 text-white text-xs font-medium rounded-full ${getComplexityColor(complexity)}`}>
                         {complexity}
                     </span>
                     <span className={`px-2 py-1 text-white text-xs font-medium rounded-full ${getTypeColor(type)}`}>
                         {type}
                     </span>
-                </div>
+                </div> */}
             </div>
             
             <p className="text-[#4b4f58] mb-3 leading-relaxed line-clamp-3">{description}</p>
             
-            <div className="mb-4">
+            <div className="mb-4 tech">
                 <p className="text-sm text-[#6b7280] mb-2 italic">Stack:</p>
                 <div className="flex flex-wrap gap-1">
                     {stack.split(', ').map((tech, index) => (
@@ -76,14 +76,6 @@ const ProjectCard: React.FC<Props> = ({ title, description, link, stack, complex
                 >
                     Ver Detalles
                 </button>
-                <a
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-all"
-                >
-                    GitHub
-                </a>
             </div>
         </div>
     );
