@@ -8,7 +8,7 @@ export async function getRecommendations(): Promise<PropsExperienceItem[]> {
                 {
             company: "Solu",
             role: "Ssr Fullstack Developer",
-            period: "May 2025 – Presente",
+            period: "May 2025 – Ago 2025",
             description: "Desarrollo de soluciones personalizadas sobre VTEX IO",
             details: {
                 fullDescription: "Implementé componentes VTEX IO para tienda B2B mejorando funcionalidades de checkout e inventario. Integré servicios externos (ERP y logística) mediante esquemas de datos optimizados. Colaboré con equipos funcionales en revisión técnica de requerimientos para acelerar entregas.",
