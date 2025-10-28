@@ -4,19 +4,6 @@
   "description": "Portfolio Luis - Arquitectura de Microservicios",
   "private": true,
   "scripts": {
-    "dev": "docker-compose up -d --build",
-    "dev:logs": "docker-compose up --build",
-    "start": "docker-compose up -d",
-    "stop": "docker-compose down",
-    "restart": "docker-compose restart",
-    "clean": "docker-compose down -v --remove-orphans",
-    "rebuild": "docker-compose down && docker-compose up -d --build",
-    "status": "docker-compose ps",
-    "logs": "docker-compose logs -f",
-    "logs:client": "docker-compose logs -f client",
-    "logs:api-express": "docker-compose logs -f api-express-mongo",
-    "logs:api-nest": "docker-compose logs -f api-nest-mysql",
-    "logs:gateway": "docker-compose logs -f gateway",
     "install:all": "npm run install:client && npm run install:services",
     "install:client": "cd client && npm install",
     "install:services": "cd services/api-express-mongo && npm install && cd ../api-nest-typeorm-mysql && npm install && cd ../gateway && npm install",
@@ -24,7 +11,7 @@
     "dev:client": "cd client && npm run dev",
     "dev:api-express": "cd services/api-express-mongo && npm start",
     "dev:api-nest": "cd services/api-nest-typeorm-mysql && npm run start:dev",
-    "dev:gateway": "cd services/gateway && npm start"
+    "dev:gateway": "cd services/gateway && npm run dev"
   },
   "devDependencies": {
     "@types/node": "^24.0.4",

@@ -108,7 +108,7 @@ export const useFormLead = (
 
     const handleOpen = useCallback(() => {
         window.location.hash = canonicalUrl
-        setFormState(prev => ({ ...prev, isOpen: true }))
+        setFormState((prev: FormState) => ({ ...prev, isOpen: true }))
     }, [canonicalUrl])
 
     const resetForm = () => {
@@ -138,14 +138,14 @@ export const useFormLead = (
 
     const handleBlur = useCallback((fieldName: string) => () => {
         if (!formData[fieldName as keyof typeof formData]) {
-            setErrors(prev => ({
+            setErrors((prev: FormErrors) => ({
                 ...prev,
                 error: prev.error,
                 message: prev.message,
                 [fieldName]: ''
             }));
         } else {
-            setErrors(prev => {
+            setErrors((prev: FormErrors) => {
                 const { [fieldName]: _, ...rest } = prev;
                 return {
                     ...rest,
@@ -172,11 +172,11 @@ export const useFormLead = (
                 const isValid = _value && _value.length > 0
                 if (!isValid) {
                     const message = getErrorMessage(fieldName, 'required')
-                    setErrors(prev => updateFieldError(prev, fieldName, message))
+                    setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, message))
                     return false
                 }
                 // Limpiar error si es válido
-                setErrors(prev => updateFieldError(prev, fieldName, ''))
+                setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, ''))
                 return true
             }
             return true
@@ -203,7 +203,7 @@ export const useFormLead = (
 
         const message = errorType ? getErrorMessage(fieldName, errorType, params) : ''
 
-        setErrors(prev => updateFieldError(prev, fieldName, message))
+        setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, message))
 
         return !message
     }, [getErrorMessage, country])
@@ -213,27 +213,27 @@ export const useFormLead = (
             inputchange: (e: React.ChangeEvent<HTMLInputElement>) => {
                 const { value, validity } = e.target
 
-                setFormData(prev => ({ ...prev, [fieldName]: value }))
+                setFormData((prev: FormData) => ({ ...prev, [fieldName]: value }))
                 validateAndUpdateField(fieldName, value, validity)
             },
             selectchange: (option: SelectOption | null) => {
                 // Si la opción es null, limpiar los campos relacionados
                 if (!option) {
                     if (fieldName === 'provincia') {
-                        setFormData(prev => ({
+                        setFormData((prev: FormData) => ({
                             ...prev,
                             provincia: '',
                             distrito: ''
                         }))
                         // Limpiar errores relacionados
-                        setErrors(prev => ({
+                        setErrors((prev: FormErrors) => ({
                             ...prev,
                             provincia: '',
                             distrito: ''
                         }))
                     } else {
-                        setFormData(prev => ({ ...prev, [fieldName]: '' }))
-                        setErrors(prev => ({ ...prev, [fieldName]: '' }))
+                        setFormData((prev: FormData) => ({ ...prev, [fieldName]: '' }))
+                        setErrors((prev: FormErrors) => ({ ...prev, [fieldName]: '' }))
                     }
                     return
                 }
@@ -242,18 +242,18 @@ export const useFormLead = (
                 if (!value) return
 
                 if (fieldName === 'provincia') {
-                    setFormData(prev => ({
+                    setFormData((prev: FormData) => ({
                         ...prev,
                         provincia: value,
                         distrito: '' // Resetear distrito
                     }))
                     validateAndUpdateField('provincia', value)
                 } else {
-                    setFormData(prev => ({ ...prev, [fieldName]: value }))
+                    setFormData((prev: FormData) => ({ ...prev, [fieldName]: value }))
                     validateAndUpdateField(fieldName, value)
                 }
 
-                setErrors(prev => updateFieldError(prev, fieldName, ''))
+                setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, ''))
             },
             handleInvalid: (e: React.InvalidEvent<HTMLInputElement>) => {
                 e.preventDefault()
@@ -274,7 +274,7 @@ export const useFormLead = (
                 const target = e.currentTarget;
                 if (name === 'tyc') {
                     const newValue = target.value === 'false' ? 'true' : 'false';
-                    setFormData(prev => ({
+                    setFormData((prev: FormData) => ({
                         ...prev,
                         [name]: newValue // Ahora manejamos tyc como string
                     }));
@@ -329,7 +329,7 @@ export const useFormLead = (
         const validationResult = validateRequiredFields(sanitizedFormData, Array.from(requiredFields))
 
         if (!validationResult.isValid) {
-            setErrors(prev => ({
+            setErrors((prev: FormErrors) => ({
                 ...prev,
                 submit: 'Por favor, completa todos los campos obligatorios.',
             }))
@@ -344,7 +344,7 @@ export const useFormLead = (
         // Validar el formulario completo
         console.log('Validación del formulario:', isValidFormToSubmit())
         if (!isValid) {
-            setErrors(prev => ({
+            setErrors((prev: FormErrors) => ({
                 ...prev,
                 submit: 'Por favor, completa todos los campos obligatorios.'
             }))
@@ -352,14 +352,14 @@ export const useFormLead = (
         }
 
         try {
-            setFormState(prev => ({
+            setFormState((prev: FormState) => ({
                 ...prev,
                 isSubmitting: true,
                 status: STATUS.LOADING
             }))
 
-            // Enviar a tu API Express
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_EXPRESS_URL}/api/v1/leads`, {
+            // Enviar a tu API Express a través de rewrites (Next.js)
+            const response = await fetch(`/api/express/api/v1/leads`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -377,7 +377,7 @@ export const useFormLead = (
 
             const result = await response.json()
             
-            setFormState(prev => ({
+            setFormState((prev: FormState) => ({
                 ...prev,
                 hasSubmitted: true,
                 status: STATUS.FINISH
@@ -385,15 +385,15 @@ export const useFormLead = (
             
         } catch (error) {
             console.error('Error:', error)
-            setFormState(prev => ({ ...prev, status: STATUS.ERROR }))
+            setFormState((prev: FormState) => ({ ...prev, status: STATUS.ERROR }))
         } finally {
-            setFormState(prev => ({ ...prev, isSubmitting: false }))
+            setFormState((prev: FormState) => ({ ...prev, isSubmitting: false }))
         }
     }
 
     useEffect(() => {
         if (country === 'PER' && !formData.provincia) {
-            setFormData(prev => ({ ...prev, distrito: '' }))
+            setFormData((prev: FormData) => ({ ...prev, distrito: '' }))
         }
     }, [country, formData.provincia])
 

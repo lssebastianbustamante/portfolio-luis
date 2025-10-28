@@ -1,24 +1,37 @@
 'use client';
 
 import { IntlProvider } from 'react-intl';
-import esMessages from './components/form/messages/es.json';
-import enMessages from './components/form/messages/en.json';
+import esForm from './components/form/messages/es.json';
+import enForm from './components/form/messages/en.json';
 import React from 'react';
 
+type Lang = 'es' | 'en';
+
+export const LanguageContext = React.createContext<{
+  language: Lang;
+  setLanguage: (lang: Lang) => void;
+}>({ language: 'es', setLanguage: () => {} });
+
 export default function IntlClientProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = React.useState('es'); // Valor por defecto
+  const [language, setLanguage] = React.useState<Lang>('es');
 
   React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const detectedLanguage = window.navigator.language;
-      const lang = detectedLanguage.startsWith('es') ? 'es' : 'en';
-      setLanguage(lang);
-    }
+    if (typeof window === 'undefined') return;
+    // Leer preferencia y sincronizar tras el mount para evitar mismatch
+    const stored = window.localStorage.getItem('lang');
+    const preferred: Lang = stored === 'es' || stored === 'en'
+      ? stored
+      : (window.navigator.language.startsWith('es') ? 'es' : 'en');
+    if (preferred !== language) setLanguage(preferred);
+    document.documentElement.lang = preferred;
+    window.localStorage.setItem('lang', preferred);
   }, []);
 
   return (
-    <IntlProvider locale={language} messages={language === 'es' ? esMessages : enMessages}>
-      {children}
-    </IntlProvider>
+    <LanguageContext.Provider value={{ language, setLanguage }}>
+      <IntlProvider locale={language} messages={language === 'es' ? esForm : enForm}>
+        {children}
+      </IntlProvider>
+    </LanguageContext.Provider>
   );
 }

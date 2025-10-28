@@ -34,7 +34,7 @@
 
 ## Descripción
 
-Esta es una API REST construida con NestJS y TypeORM que gestiona usuarios, perfiles y publicaciones, persistiendo en una base de datos MySQL. Se orquesta con Docker/Docker‑Compose para un entorno de desarrollo reproducible.
+Esta es una API REST construida con NestJS y TypeORM que gestiona usuarios, perfiles y publicaciones, persistiendo en una base de datos MySQL.
 
 ## Características
 
@@ -51,7 +51,6 @@ Esta es una API REST construida con NestJS y TypeORM que gestiona usuarios, perf
 
 - Node.js ≥ 18
 - npm ≥ 10
-- Docker & Docker‑Compose
 - Git
 
 ---
@@ -99,12 +98,6 @@ npm run start:dev
 ```
 La API escuchará en http://localhost:3000/api
 
-### Con Docker‑Compose
-```bash
-docker-compose up --build
-```
-- Servicio `mysqldb`: MySQL disponible en `localhost:$DB_LOCAL_PORT`
-- Servicio `api`: NestJS en `localhost:$NODE_LOCAL_PORT`
 
 ---
 

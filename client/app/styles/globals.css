@@ -27,10 +27,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-noto-sans);
   --font-mono: var(--font-geist-mono);
-  --font-confortaa: var(--font-confortaa);
-  --font-noto: var(--font-noto)
+  --font-confortaa: var(--font-comfortaa);
+  --font-noto: var(--font-noto);
 }
 
 /* Tema oscuro */
@@ -80,7 +80,7 @@ main {
 
 .about-us {
   p {
-    font-family: 14px;
+    font-size: 14px;
     font-family: "Noto Sans", sans-serif;
   }
 }

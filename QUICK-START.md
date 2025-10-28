@@ -1,4 +1,19 @@
-# 🚀 Comandos Docker - Referencia Rápida
+# 🚀 Inicio Rápido
+
+## Vercel (Frontend)
+
+1. Crear proyecto en Vercel seleccionando este repo y estableciendo `client` como Project Root.
+2. Build Command: `next build`
+3. Variables de entorno:
+   - `NEXT_PUBLIC_API_EXPRESS_URL=https://tu-express.example.com`
+   - `NEXT_PUBLIC_API_NEST_URL=https://tu-nest.example.com`
+   - `NEXT_PUBLIC_GATEWAY_URL=https://tu-gateway.example.com`
+4. Rewrites ya configurados en `client/next.config.ts`.
+5. Probar en el frontend: `fetch('/api/express/tours')`.
+
+---
+
+# 🐳 Comandos Docker - Referencia Rápida
 
 ## Comandos Esenciales
 

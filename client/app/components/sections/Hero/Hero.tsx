@@ -1,4 +1,6 @@
+"use client";
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const Hero: React.FC = () => {
     return (
@@ -9,7 +11,9 @@ const Hero: React.FC = () => {
           marginBottom: "0.7104em",
           flexDirection:"column"
         }} className="font-semibold mb-6  pb-2 font-noto">
-                <h1 className='title'>Fullstack Developer</h1>
+                <h1 className='title'>
+                    <FormattedMessage id="hero.title" defaultMessage="Fullstack Developer" />
+                </h1>
                 <div className="content">
                     <a
                         href="mailto:luissebastianbustamantebarrera@gmail.com"
