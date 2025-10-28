@@ -1,9 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   eslint: {
     // Advertencia: solo deshabilita durante desarrollo
     ignoreDuringBuilds: true,
   },
-}
+};
 
-module.exports = nextConfig;
+export default nextConfig;
