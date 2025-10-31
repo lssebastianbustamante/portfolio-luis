@@ -74,7 +74,7 @@ const BaseInput: React.FC<FormFieldProps> = (props) => {
           name={name}
           type={type}
           pattern={pattern}
-          value={value}
+          value={value ?? ''}
           onChange={
             onChange
               ? (e) => {

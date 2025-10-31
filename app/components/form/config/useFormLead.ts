@@ -285,13 +285,8 @@ export const useFormLead = (
     );
 
     const isValidFormToSubmit = useCallback((): boolean => {
-        const requiredFields = country === 'ARG'
-            ? REQUIRED_FIELDS_ARG
-            : country === 'COL'
-                ? REQUIRED_FIELDS_COL
-                : country === 'PER'
-                    ? REQUIRED_FIELDS_PE
-                    : REQUIRED_FIELDS_ARG
+        const phoneField = country === 'ARG' ? 'telefono' : 'celular'
+        const requiredFields = new Set<string>(['nombre', 'email', phoneField])
 
         // Verificar específicamente provincia y distrito cuando corresponda
         const validateField = (fieldName: string) => {
@@ -306,7 +301,7 @@ export const useFormLead = (
             return hasValue && hasNoError
         }
 
-        const requiredFieldsValid = requiredFields.every(validateField)
+        const requiredFieldsValid = Array.from(requiredFields).every(validateField)
         const termAndConditions = formData.tyc === 'true'; // Comparamos strings
 
         return requiredFieldsValid &&
@@ -320,7 +315,8 @@ export const useFormLead = (
 
         if (formState.hasSubmitted || formState.isSubmitting) return
 
-        const requiredFields = country === 'ARG' ? REQUIRED_FIELDS_ARG : country === 'COL' ? REQUIRED_FIELDS_COL : country === 'PER' ? REQUIRED_FIELDS_PE : REQUIRED_FIELDS_ARG
+        const phoneField = country === 'ARG' ? 'telefono' : 'celular'
+        const requiredFields = new Set<string>(['nombre', 'email', phoneField])
 
         const sanitizedFormData = Object.fromEntries(
             Object.entries(formData).map(([key, value]) => [key, value ?? ''])
@@ -337,7 +333,7 @@ export const useFormLead = (
         }
 
         // Validar cada campo individualmente
-        const isValid = requiredFields.every((field: string) =>
+        const isValid = Array.from(requiredFields).every((field: string) =>
             validateAndUpdateField(field, formData[field as keyof typeof formData] as string)
         )
         console.log('Validación de campos:', isValid)
@@ -358,24 +354,54 @@ export const useFormLead = (
                 status: STATUS.LOADING
             }))
 
-            // Enviar a tu API Express a través de rewrites (Next.js)
-            const response = await fetch(`/api/express/api/v1/leads`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ...formData,
-                    createdAt: new Date().toISOString(),
-                    source: 'portfolio-contact-form'
-                })
-            })
+            let finalResponse: Response | null = null
+            const maxRetries = 2
+            for (let attempt = 0; attempt <= maxRetries; attempt++) {
+                const controller = new AbortController()
+                const timeoutId = setTimeout(() => controller.abort(), 15000)
+                try {
+                    const response = await fetch(`https://luis-platzi.app.n8n.cloud/webhook/portfolio-form`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json, text/plain, */*'
+                        },
+                        body: JSON.stringify({
+                            email: (formData as any).email ?? '',
+                            nombre: (formData as any).nombre ?? '',
+                            telefono: (formData as any).telefono ?? '',
+                            createdAt: new Date().toISOString(),
+                            source: 'portfolio-contact-form'
+                        }),
+                        signal: controller.signal
+                    })
+                    clearTimeout(timeoutId)
+                    if (response.ok) {
+                        finalResponse = response
+                        break
+                    }
+                    if (attempt === maxRetries) {
+                        throw new Error('Error al enviar el formulario')
+                    }
+                } catch (err) {
+                    clearTimeout(timeoutId)
+                    if (attempt === maxRetries) {
+                        throw err
+                    }
+                }
+            }
 
-            if (!response.ok) {
+            if (!finalResponse) {
                 throw new Error('Error al enviar el formulario')
             }
 
-            const result = await response.json()
+            let parsed: unknown = null
+            const raw = await finalResponse.text()
+            try {
+                parsed = raw ? JSON.parse(raw) : null
+            } catch {
+                parsed = raw
+            }
             
             setFormState((prev: FormState) => ({
                 ...prev,
