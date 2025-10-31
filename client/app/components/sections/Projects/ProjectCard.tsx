@@ -1,5 +1,4 @@
 "use client";
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
     stackId?: string
 }
 
-const ProjectCard: React.FC<Props> = ({ title, description, link, stack, stackId }) => {
+function ProjectCard({ title, description, link, stack, stackId }: Props) {
     const intl = useIntl();
     const stackText = stackId
       ? intl.formatMessage({ id: stackId, defaultMessage: stack || '' })
@@ -32,6 +31,6 @@ const ProjectCard: React.FC<Props> = ({ title, description, link, stack, stackId
           </a>
         </div>
       );
-};
+}
 
 export default ProjectCard;

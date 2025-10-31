@@ -3,6 +3,8 @@
 import { IntlProvider } from 'react-intl';
 import esForm from './components/form/messages/es.json';
 import enForm from './components/form/messages/en.json';
+import esSkills from './components/sections/Skills/messages/es.json';
+import enSkills from './components/sections/Skills/messages/en.json';
 import React from 'react';
 
 type Lang = 'es' | 'en';
@@ -29,7 +31,14 @@ export default function IntlClientProvider({ children }: { children: React.React
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
-      <IntlProvider locale={language} messages={language === 'es' ? esForm : enForm}>
+      <IntlProvider
+        locale={language}
+        messages={
+          language === 'es'
+            ? { ...esForm, ...esSkills }
+            : { ...enForm, ...enSkills }
+        }
+      >
         {children}
       </IntlProvider>
     </LanguageContext.Provider>

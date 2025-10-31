@@ -6,18 +6,22 @@ import { LanguageContext } from '../IntlClientProvider'
 export default function LanguageToggle() {
   const { language, setLanguage } = useContext(LanguageContext)
   return (
-    <div className="flex items-center gap-2 text-sm">
+    <div className="language-toggle">
       <button
         type="button"
         onClick={() => setLanguage('es')}
-        className={`px-2 py-1 rounded border ${language === 'es' ? 'bg-portfolio-orange text-white' : 'bg-white'}`}
+        className={`lang-btn ${language === 'es' ? 'active' : ''}`}
+        aria-pressed={language === 'es'}
+        aria-label="Cambiar a Español"
       >
         ES
       </button>
       <button
         type="button"
         onClick={() => setLanguage('en')}
-        className={`px-2 py-1 rounded border ${language === 'en' ? 'bg-portfolio-orange text-white' : 'bg-white'}`}
+        className={`lang-btn ${language === 'en' ? 'active' : ''}`}
+        aria-pressed={language === 'en'}
+        aria-label="Switch to English"
       >
         EN
       </button>
