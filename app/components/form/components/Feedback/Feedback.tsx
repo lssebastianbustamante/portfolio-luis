@@ -43,8 +43,7 @@ const Feedback: React.FC<FeedbackProps> = ({
     <div className={CSS_HANDLES[0]}>
       <h2 className={CSS_HANDLES[1]}>
         <FormattedMessage
-          id={messages.feedbackTitle.id}
-          defaultMessage="Title"
+          id="form/form.feedback.title" defaultMessage="Title"
         />
       </h2>
       <button
@@ -57,8 +56,7 @@ const Feedback: React.FC<FeedbackProps> = ({
       </button>
       <p className={CSS_HANDLES[3]}>
         <FormattedMessage
-          id={messages.feedbackText.id}
-          defaultMessage="Subtitle"
+          id="form/form.feedback.text" defaultMessage="Subtitle"
         />  
       </p>
       <button
@@ -67,8 +65,7 @@ const Feedback: React.FC<FeedbackProps> = ({
         className={CSS_HANDLES[4]}
       >
         <FormattedMessage
-          id={messages.modalCloseButton.id}
-          defaultMessage="Cerrar"
+          id="form/form.feedback.button" defaultMessage="Cerrar"
         />
       </button>
     </div>
