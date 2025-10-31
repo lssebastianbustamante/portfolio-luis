@@ -37,10 +37,6 @@ const BASE_STATE = {
 export const initialStateFields = {
   ARG: {
     ...BASE_STATE,
-    calle: '',
-    altura: '',
-    codigoPostal: '',
-    localidad: ''
   },
   COL: {
     ...BASE_STATE,

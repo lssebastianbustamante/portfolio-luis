@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Comfortaa, Noto_Sans } from "next/font/google";
 
 import "./styles/globals.css";
+import esMessages from "./components/form/messages/es.json";
+import enMessages from "./components/form/messages/en.json";
 import IntlClientProvider from "./IntlClientProvider";
+import LanguageToggle from "./components/LanguageToggle";
 const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
   subsets: ["vietnamese", "latin"],
@@ -18,39 +22,32 @@ const noto = Noto_Sans({
   fallback: ["system-ui", "arial"],
 });
 
-export const metadata: Metadata = {
-  title: "Portfolio Luis Bustamante",
-  description: "Desarrollador Full Stack con experiencia en React, TypeScript y Node.js",
-  metadataBase: new URL("https://example.com"),
-  openGraph: {
-    title: "Portfolio Luis Bustamante",
-    description:
-      "Desarrollador Full Stack con experiencia en React, TypeScript y Node.js",
-    url: "/",
-    siteName: "Portfolio Luis Bustamante",
-    locale: "es_ES",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Portfolio Luis Bustamante",
-    description:
-      "Desarrollador Full Stack con experiencia en React, TypeScript y Node.js",
-    creator: "@luisbustamante",
-  },
-  themeColor: "#fb733c",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const h = await headers();
+  const accept = h.get("accept-language") || "";
+  const lang = accept.toLowerCase().startsWith("es") ? "es" : "en";
+  const dict = lang === "es" ? (esMessages as Record<string, string>) : (enMessages as Record<string, string>);
+  return {
+    title: dict["header.name"] || "Portfolio Luis Bustamante",
+    description: dict["header.description"] || "Full Stack Developer with experience in React, TypeScript and Node.js",
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const h = await headers();
+  const accept = h.get("accept-language") || "";
+  const serverLang = accept.toLowerCase().startsWith("es") ? "es" : "en";
   return (
-    <html lang="es">
+    <html lang={serverLang}>
       <body className={`${noto.variable} ${comfortaa.variable} antialiased`}>
         <IntlClientProvider>
-
+          <div className="max-w-5xl mx-auto p-4 flex justify-end">
+            <LanguageToggle />
+          </div>
           {children}
         </IntlClientProvider>
       </body>
