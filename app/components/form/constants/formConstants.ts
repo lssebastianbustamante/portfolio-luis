@@ -97,16 +97,16 @@ export const FORM_FIELDS_ARG = [
         maxLength: 9999999999,
         minLength: 999999999
     },
-    COMMON_FIELDS.provincia,
-    {
-        name: 'localidad',
-        type: 'text',
-        label: 'form/form.label.localidad',
-        required: true,
-        pattern: '[a-zA-Z 0-9]*',
-        minLength: 5,
-        maxLength: 50
-    },
+    // COMMON_FIELDS.provincia,
+    // {
+    //     name: 'localidad',
+    //     type: 'text',
+    //     label: 'form/form.label.localidad',
+    //     required: true,
+    //     pattern: '[a-zA-Z 0-9]*',
+    //     minLength: 5,
+    //     maxLength: 50
+    // },
     COMMON_FIELDS.tyc
 ]
 
@@ -140,7 +140,7 @@ export const FORM_FIELDS_COL = [
         minLength: 99999999
     },
     COMMON_FIELDS.email,
-    COMMON_FIELDS.provincia,
+    // COMMON_FIELDS.provincia,
     COMMON_FIELDS.tyc
 ]
 
@@ -185,13 +185,13 @@ export const FORM_FIELDS_PE = [
         minLength: 5,
         maxLength: 50
     },
-    COMMON_FIELDS.provincia,
-    {
-        name: 'distrito',
-        type: 'select',
-        label: 'form/form.label.distrito',
-        required: true,
-        minLength: 5,
-    },
+    // COMMON_FIELDS.provincia,
+    // {
+    //     name: 'distrito',
+    //     type: 'select',
+    //     label: 'form/form.label.distrito',
+    //     required: true,
+    //     minLength: 5,
+    // },
     COMMON_FIELDS.tyc
 ]

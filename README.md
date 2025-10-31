@@ -1,283 +1,223 @@
-# Portfolio Luis - Arquitectura de Microservicios
+# Portfolio Luis Bustamante - Frontend
 
-![Portfolio](https://img.shields.io/badge/Portfolio-Luis%20Bustamante-blue)
-![Version](https://img.shields.io/badge/version-1.0.0-green)
-![Next.js](https://img.shields.io/badge/Next.js-15.3.0-black)
+Portfolio personal desarrollado con Next.js que muestra mi experiencia profesional, proyectos y habilidades técnicas.
 
-## 📋 Descripción
+## 🚀 Tecnologías
 
-Portfolio personal de Luis Bustamante construido con una arquitectura de microservicios moderna. El proyecto incluye un frontend desarrollado en Next.js con TypeScript y múltiples servicios backend para demostrar diferentes tecnologías y patrones de desarrollo.
+- React 19
+- Next.js 15.3.0 con App Router
+- TypeScript 5
+- Tailwind CSS 4
+- Apollo Client para GraphQL
+- React Intl para internacionalización
+- Google Maps API
+- React Select
+- React Hooks
 
-## 🚀 Inicio Rápido
+## ✨ Características
 
-Para iniciar rápidamente el proyecto sin Docker, consulta: [QUICK-START.md](./QUICK-START.md)
+- Diseño responsive y moderno
+- Internacionalización con React Intl
+- Integración con Google Maps
+- Apollo Client para consultas GraphQL
+- Componentes modulares y reutilizables
+- SEO optimizado
+- Formularios con validación
+- Integración con múltiples servicios backend
 
-## 🏗️ Arquitectura del Proyecto
+## 📁 Estructura del Proyecto
 
 ```
-portfolio-luis/
-├── client/                    # Frontend - Next.js 15 con TypeScript
-├── services/                  # Microservicios Backend (desarrollo local)
-│   ├── api-express-mongo/     # API REST con Express.js y MongoDB
-│   ├── api-nest-typeorm-mysql/# API REST con NestJS, TypeORM y MySQL
-│   └── gateway/               # API Gateway
+├── app/                           # App Router de Next.js 15
+│   ├── components/                # Componentes reutilizables
+│   │   ├── common/               # Componentes comunes
+│   │   │   ├── Icons/           # Iconos (Icons.tsx, SocialIcon.tsx)
+│   │   │   └── Modal/           # Modal reutilizable
+│   │   ├── form/                # Componentes de formularios
+│   │   │   ├── FormLeads.tsx    # Formulario principal
+│   │   │   ├── components/      # Subcomponentes del formulario
+│   │   │   ├── config/          # Configuraciones
+│   │   │   ├── constants/       # Constantes
+│   │   │   ├── hook/            # Hooks personalizados
+│   │   │   ├── messages/        # Mensajes de validación
+│   │   │   ├── schema/          # Schemas de validación
+│   │   │   ├── typings/         # Tipos TypeScript
+│   │   │   └── utils/           # Utilidades
+│   │   ├── layout/              # Componentes de layout
+│   │   │   ├── Header/          # Encabezado
+│   │   │   └── Footer/          # Pie de página
+│   │   └── sections/            # Secciones principales
+│   │       ├── About/           # Sección Acerca de
+│   │       ├── Contact/         # Sección Contacto
+│   │       ├── Experience/      # Sección Experiencia
+│   │       ├── Hero/            # Sección Hero
+│   │       ├── Projects/        # Sección Proyectos
+│   │       └── Skills/          # Sección Habilidades
+│   ├── hooks/                   # Custom hooks
+│   │   └── useExperience.ts     # Hook para experiencia
+│   ├── lib/                     # Configuraciones y tipos
+│   │   ├── constants.ts         # Constantes globales
+│   │   └── types.ts             # Tipos TypeScript
+│   ├── styles/                  # Estilos globales
+│   │   └── globals.css          # CSS global
+│   ├── utils/                   # Utilidades
+│   │   └── getRecommendation.ts # Utilidad para recomendaciones
+│   ├── IntlClientProvider.tsx   # Proveedor de internacionalización
+│   ├── layout.tsx               # Layout principal
+│   └── page.tsx                 # Página principal
+├── public/                      # Assets estáticos
+│   ├── Luis-Bustamante.pdf      # CV
+│   └── *.svg                    # Iconos SVG
+└── config files                 # Configuraciones
+    ├── next.config.ts           # Configuración Next.js
+    ├── tailwind.config.ts       # Configuración Tailwind
+    ├── tsconfig.json           # Configuración TypeScript
+    └── eslint.config.mjs       # Configuración ESLint
 ```
 
-## 🚀 Tecnologías Utilizadas
+## 🛠️ Instalación
 
-### Frontend (Client)
-- **Framework**: Next.js 15.3.0 con App Router
-- **Lenguaje**: TypeScript 5
-- **Estilos**: Tailwind CSS 4
-- **Internacionalización**: React Intl
-- **Mapas**: Google Maps API
-- **GraphQL**: Apollo Client
-- **UI Components**: Componentes personalizados
-
-### Backend Services
-
-#### API Express MongoDB
-- **Framework**: Express.js
-- **Base de Datos**: MongoDB con Mongoose
-- **Comunicación**: NATS para messaging
-
-#### API NestJS TypeORM MySQL
-- **Framework**: NestJS
-- **Base de Datos**: MySQL con TypeORM
-- **Testing**: Jest
-
-#### Gateway
-- **Framework**: Express.js
-- **Función**: API Gateway para routing y load balancing
-
-## 📦 Instalación y Configuración
-
-### Prerrequisitos
-- Node.js 18+
-- Git
-
-### 1. Clonar el Repositorio
+1. Clona el repositorio:
 ```bash
-git clone <repository-url>
-cd portfolio-luis
+git clone https://github.com/tuusuario/portfolio-luis.git
+cd portfolio-luis/client
 ```
 
-### 2. Configuración de Variables de Entorno
+2. Instala las dependencias:
 ```bash
-# Copiar archivo de ejemplo
-cp .env.example .env
-# Editar según tu entorno
-```
-
-### 4. Desarrollo Local (Solo Frontend)
-```bash
-cd client
 npm install
+```
+
+3. Configura las variables de entorno (opcional):
+```bash
+# Crea un archivo .env.local si necesitas configurar APIs
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=tu_api_key
+```
+
+4. Ejecuta el servidor de desarrollo:
+```bash
 npm run dev
 ```
 
-## 🛠️ Scripts Disponibles
+5. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-### Frontend (Client)
+## 🔧 Scripts Disponibles
+
 ```bash
-npm run dev        # Desarrollo con hot reload
-npm run build      # Build para producción
-npm run start      # Servidor de producción
+npm run dev        # Inicia el servidor de desarrollo
+npm run build      # Construye la aplicación para producción
+npm run start      # Inicia el servidor de producción
 ```
 
-### API Express MongoDB
-```bash
-npm start          # Desarrollo con nodemon
-```
+## 🔧 Configuración
 
-### API NestJS TypeORM MySQL
-```bash
-npm run start:dev  # Desarrollo con watch mode
-npm run build      # Build para producción
-npm run start:prod # Servidor de producción
-npm run test       # Ejecutar tests
-npm run test:e2e   # Tests end-to-end
-```
+1. **Variables de entorno**: Crea un archivo `.env.local` para configurar APIs externas como Google Maps.
 
-## 🌐 Endpoints y Servicios
+2. **Contenido**: 
+   - Modifica `app/lib/constants.ts` para actualizar información personal
+   - Actualiza el CV en `public/Luis-Bustamante.pdf`
+   - Personaliza los componentes en las carpetas correspondientes
 
-### Frontend
-- **Puerto**: 3000
-- **URL**: http://localhost:3000
+3. **Internacionalización**: 
+   - Los mensajes se gestionan a través de React Intl
+   - Configura idiomas en `IntlClientProvider.tsx`
 
-### API Services
-- **Express MongoDB**: Puerto 8081
-- **NestJS MySQL**: Puerto 3001
-- **Gateway**: Puerto 1111
+4. **GraphQL**: 
+   - Apollo Client está configurado para conectar con servicios backend
+   - Las consultas se pueden agregar según necesidades
 
-## 📁 Estructura de Carpetas Detallada
+## 📱 Componentes Principales
 
-### Client (Frontend)
-```
-client/
-├── app/                      # App Router de Next.js
-│   ├── components/           # Componentes reutilizables
-│   │   ├── common/          # Componentes comunes (Icons, Modal)
-│   │   ├── form/            # Componentes de formularios
-│   │   ├── layout/          # Componentes de layout (Header, Footer)
-│   │   └── sections/        # Secciones principales del portfolio
-│   ├── hooks/               # Custom hooks
-│   ├── lib/                 # Configuraciones y tipos
-│   ├── styles/              # Estilos globales
-│   └── utils/               # Utilidades
-├── public/                  # Assets estáticos
-└── config files             # Configuraciones (Next, Tailwind, ESLint, etc.)
-```
+### Secciones del Portfolio
 
-### Services (Backend)
-```
-services/
-├── api-express-mongo/       # Microservicio Express + MongoDB
-│   └── src/
-│       ├── controllers/     # Controladores REST
-│       ├── models/          # Modelos de Mongoose
-│       ├── routes/          # Definición de rutas
-│       ├── nats/           # Configuración NATS
-│       └── utils/          # Utilidades y middleware
-├── api-nest-typeorm-mysql/  # Microservicio NestJS + MySQL
-│   └── src/
-│       ├── db/             # Configuración de base de datos
-│       ├── post/           # Módulo de posts
-│       ├── users/          # Módulo de usuarios
-│       └── app files       # Archivos principales de la app
-└── gateway/                # API Gateway
-    └── src/                # Código fuente del gateway
-```
+#### Hero Section
+- Presentación principal
+- Información de contacto
+- Llamadas a la acción
 
-## 🔧 Configuración de Desarrollo
+#### About Section  
+- Información personal detallada
+- Descripción profesional
 
-### Variables de Entorno
-Configurar las siguientes variables según el entorno:
+#### Experience Section
+- Experiencia laboral
+- Proyectos destacados
+- Tecnologías utilizadas
 
+#### Skills Section
+- Habilidades técnicas
+- Competencias profesionales
+
+#### Projects Section
+- Portfolio de proyectos
+- Descripción y tecnologías
+
+#### Contact Section
+- Formulario de contacto
+- Información de contacto
+- Integración con Google Maps
+
+### Componentes Reutilizables
+
+#### FormLeads
+Sistema completo de formularios con:
+- Validación de campos
+- Manejo de errores
+- Integración con backend
+- Componentes modulares
+
+#### Modal Component
+- Modal reutilizable
+- Diferentes tipos de contenido
+- Animaciones suaves
+
+#### Icons System
+- Iconos SVG optimizados
+- Iconos de redes sociales
+- Sistema consistente
+
+## 🌐 Despliegue
+
+El proyecto está optimizado para ser desplegado en Vercel:
+
+1. Crea una cuenta en [Vercel](https://vercel.com)
+2. Conecta tu repositorio de GitHub
+3. Configura las variables de entorno necesarias
+4. Despliega automáticamente
+
+### Variables de Entorno para Producción
 ```env
-# MongoDB Service
-MONGO_HOST=localhost
-MONGO_DB=tours
-MONGO_PORT=27017
-LOCAL_PORT=8081
-NATS_HOST=localhost
-NATS_PORT=4222
-
-# MySQL Service
-DATABASE_HOST=localhost
-DATABASE_PORT=3306
-DATABASE_USER=root
-DATABASE_PASSWORD=password
-DATABASE_NAME=portfolio
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=tu_api_key_de_google_maps
+# Agrega otras variables según necesidades
 ```
+
+## 🔗 Integración con Backend
+
+Este frontend está diseñado para trabajar con los microservicios del proyecto:
+
+- **API Express MongoDB**: Para gestión de datos
+- **API NestJS MySQL**: Para funcionalidades avanzadas  
+- **Apollo Client**: Para consultas GraphQL
+- **Formularios**: Integración con APIs para envío de datos
 
 ## 🧪 Testing
 
-### Frontend
 ```bash
-cd client
-# Agregar tests según necesidad
+# Agregar testing según necesidades del proyecto
+npm run test        # Tests unitarios (por configurar)
+npm run test:e2e    # Tests end-to-end (por configurar)
 ```
-
-### Backend NestJS
-```bash
-cd services/api-nest-typeorm-mysql
-npm run test           # Unit tests
-npm run test:e2e       # Integration tests
-npm run test:cov       # Coverage report
-```
-
-## 📈 Monitoreo y Logs
-
-- Los logs de cada servicio están disponibles via `console.log`
-- Configuración de health checks en cada servicio
-
-## 🤝 Contribución
-
-1. Fork el proyecto
-2. Crear una rama para la feature (`git checkout -b feature/AmazingFeature`)
-3. Commit los cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir un Pull Request
 
 ## 📄 Licencia
 
-Este proyecto es parte del portfolio personal de Luis Bustamante.
+MIT
 
-## 📞 Contacto
+## 👤 Autor
 
 **Luis Bustamante**
-- LinkedIn: [https://www.linkedin.com/in/luissb-bustamante/]
-- Email: [luissebastianbustamante@gmail.com]
-- Portfolio: [https://portfolio-luis-iota.vercel.app/]
+* LinkedIn: [@luissb-bustamante](https://www.linkedin.com/in/luissb-bustamante/)
+* GitHub: [@lssebastianbustamante](https://github.com/lssebastianbustamante)
 
----
+## 🤝 Contribuciones
 
-⭐ Si te gusta este proyecto, ¡no olvides darle una estrella!
-
----
-
-## ▲ Despliegue en Vercel
-
-### Configuración del Proyecto (Frontend)
-- Project Root: `client`
-- Build Command: `next build`
-- Output: administrado por Vercel (Next 13+)
-
-### Variables de Entorno (Vercel)
-Define estas variables en Vercel (Production/Preview):
-
-```env
-NEXT_PUBLIC_API_EXPRESS_URL=https://tu-express.example.com
-NEXT_PUBLIC_API_NEST_URL=https://tu-nest.example.com
-NEXT_PUBLIC_GATEWAY_URL=https://tu-gateway.example.com
-```
-
-### Rewrites en Next.js (cliente)
-Ya están configurados en `client/next.config.ts`:
-- `/api/express/:path*` -> `NEXT_PUBLIC_API_EXPRESS_URL/:path*`
-- `/api/nest/:path*` -> `NEXT_PUBLIC_API_NEST_URL/:path*`
-- `/api/gateway/:path*` -> `NEXT_PUBLIC_GATEWAY_URL/:path*`
-
-Ejemplo de uso en el frontend:
-```ts
-const res = await fetch('/api/express/tours');
-const data = await res.json();
-```
-
-### CORS en el Gateway (producción)
-Configura los orígenes permitidos vía `CORS_ORIGINS` (separados por comas):
-
-```env
-CORS_ORIGINS=https://tu-proyecto.vercel.app,https://tu-dominio.com
-```
-
-El gateway aplicará `credentials: true` y validará el `origin` contra esa lista.
-
-### Archivos de entorno de ejemplo
-
-- client/.env.example
-
-```env
-# URLs públicas de tus APIs para rewrites (definir en Vercel y local si hace falta)
-NEXT_PUBLIC_API_EXPRESS_URL=https://tu-express.example.com
-NEXT_PUBLIC_API_NEST_URL=https://tu-nest.example.com
-NEXT_PUBLIC_GATEWAY_URL=https://tu-gateway.example.com
-
-# Otros (opcional)
-# NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=tu_api_key
-```
-
-- services/gateway/.env.example
-
-```env
-# Puerto del gateway
-PORT=1111
-
-# Orígenes permitidos para CORS (separados por coma). Incluye tu dominio de Vercel y/o dominio custom
-CORS_ORIGINS=https://tu-proyecto.vercel.app,https://tu-dominio.com
-
-# Conexiones a otros servicios (si aplica)
-# NATS_URL=nats://localhost:4222
-# MONGODB_URI=mongodb://localhost:27017/tours
-```
+Las contribuciones, problemas y solicitudes de funciones son bienvenidas. No dudes en revisar la página de [issues](https://github.com/tuusuario/portfolio-luis/issues) si quieres contribuir.

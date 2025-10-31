@@ -1,16 +1,4 @@
 {
-  "app\\components\\form\\components\\lazyComponents.ts -> ../components/Feedback/Feedback": {
-    "id": "app\\components\\form\\components\\lazyComponents.ts -> ../components/Feedback/Feedback",
-    "files": [
-      "static/chunks/_app-pages-browser_app_components_form_components_Feedback_Feedback_tsx.js"
-    ]
-  },
-  "app\\components\\form\\components\\lazyComponents.ts -> ../components/FormLeadsModal": {
-    "id": "app\\components\\form\\components\\lazyComponents.ts -> ../components/FormLeadsModal",
-    "files": [
-      "static/chunks/_app-pages-browser_app_components_form_components_FormLeadsModal_tsx.js"
-    ]
-  },
   "app\\components\\form\\components\\lazyComponents.ts -> ./BaseInput/BaseInput": {
     "id": "app\\components\\form\\components\\lazyComponents.ts -> ./BaseInput/BaseInput",
     "files": [
@@ -23,6 +11,12 @@
       "static/chunks/_app-pages-browser_app_components_form_components_ContainerForm_tsx.js"
     ]
   },
+  "app\\components\\form\\components\\lazyComponents.ts -> ./Feedback/Feedback": {
+    "id": "app\\components\\form\\components\\lazyComponents.ts -> ./Feedback/Feedback",
+    "files": [
+      "static/chunks/_app-pages-browser_app_components_form_components_Feedback_Feedback_tsx.js"
+    ]
+  },
   "app\\components\\form\\components\\lazyComponents.ts -> ./FormField": {
     "id": "app\\components\\form\\components\\lazyComponents.ts -> ./FormField",
     "files": [
@@ -33,6 +27,12 @@
     "id": "app\\components\\form\\components\\lazyComponents.ts -> ./FormFields",
     "files": [
       "static/chunks/_app-pages-browser_app_components_form_components_FormFields_tsx.js"
+    ]
+  },
+  "app\\components\\form\\components\\lazyComponents.ts -> ./FormLeadsModal": {
+    "id": "app\\components\\form\\components\\lazyComponents.ts -> ./FormLeadsModal",
+    "files": [
+      "static/chunks/_app-pages-browser_app_components_form_components_FormLeadsModal_tsx.js"
     ]
   },
   "app\\components\\form\\components\\lazyComponents.ts -> ./GoogleErrorMessage": {

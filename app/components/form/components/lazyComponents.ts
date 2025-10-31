@@ -2,8 +2,8 @@ import React from 'react'
 
 export const ContainerForm = React.lazy(() => import('./ContainerForm'))
 export const FormFields = React.lazy(() => import('./FormFields'))
-export const Feedback = React.lazy(() => import('../components/Feedback/Feedback'))
-export const FormLeadsModal = React.lazy(() => import('../components/FormLeadsModal'))
+export const Feedback = React.lazy(() => import('./Feedback/Feedback'))
+export const FormLeadsModal = React.lazy(() => import('./FormLeadsModal'))
 export const LoadingFallback = React.lazy(() => import('./LoadingFallback'))
 export const GoogleErrorMessage = React.lazy(() => import('./GoogleErrorMessage'))
 export const FormField = React.lazy(() => import('./FormField'))
