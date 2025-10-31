@@ -7,11 +7,11 @@ import { Close } from '../icons'
  const messages = defineMessages({
   feedbackTitle: {
     id: 'form/feedback.title',
-    defaultMessage: 'Title'
+    defaultMessage: '¡Gracias! Recibí tu mensaje'
   },
   feedbackText: {
     id: 'form/feedback.text',
-    defaultMessage: 'Subtitle'
+    defaultMessage: 'Te responderé a la brevedad. Revisa tu email por cualquier actualización.'
   },
   modalCloseButton: {
     id: 'form/modal.closeButton',
