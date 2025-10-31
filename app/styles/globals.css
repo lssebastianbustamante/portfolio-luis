@@ -92,6 +92,23 @@ body {
   color: var(--foreground);
 }
 
+/* Utilidades para truncar texto */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 main {
   @media screen and (max-width: 787px) {
     padding: 1rem;
@@ -119,8 +136,36 @@ main {
   span {
     text-transform: uppercase;
     color: var(--text-dark);
-    font-size: 1rem;
+    font-size: 1.2rem;
+
+    @media screen and (max-width: 787px) {
+      font-size: 0.8rem;
+    }
   }
+}
+
+.type span {
+  font-size: .9rem;
+  @media screen and (max-width: 787px) {
+    font-size: 0.8rem;
+    
+  }
+}
+
+.tech {
+  min-height: 6rem;
+  span {
+  font-size: 1rem;
+  @media screen and (max-width: 787px) {
+    font-size: 0.8rem;
+    
+  }
+}
+}
+span.skill {
+    text-transform: capitalize;
+    color: var(--text-dark);
+    font-size: 14px;
 }
 
 .about-us {
