@@ -5,6 +5,7 @@ interface Props {
     title: string
     link: string
     description: string
+    stack: string
     complexity: string
     type: string
     onViewDetails: () => void
