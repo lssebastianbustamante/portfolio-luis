@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-
+import { useIntl } from 'react-intl';
 
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
@@ -26,33 +26,34 @@ interface Project {
 }
 
 const Projects: React.FC = () => {
+    const intl = useIntl();
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const projectList: Project[] = [
         {
-            title: 'Wheel Fortune',
-            description: 'Una aplicación VTEX IO que implementa una ruleta de premios interactiva con arquitectura cliente-servidor.',
-            fullDescription: 'Aplicación completa VTEX IO con ruleta de premios que incluye validación de usuarios, persistencia en Master Data, animaciones CSS avanzadas y sistema de premios configurable. Implementa arquitectura cliente-servidor con backend Node.js y frontend React con TypeScript.',
+            title: 'projects.wheelFortune.title',
+            description: 'projects.wheelFortune.description',
             technologies: ['React', 'TypeScript', 'Node.js', 'VTEX IO', 'CSS Animations', 'Master Data', 'GraphQL'],
+            fullDescription: 'projects.wheelFortune.fullDescription',
             features: [
-                'Ruleta interactiva con animaciones CSS fluidas',
-                'Validación de email y prevención de duplicados',
-                'Backend con persistencia en Master Data',
-                'Modal responsive con countdown automático',
-                'Sistema de premios completamente configurable',
-                'Integración con plataforma VTEX IO',
-                'Gestión de estado compleja con React hooks'
+                'projects.wheelFortune.features.0',
+                'projects.wheelFortune.features.1',
+                'projects.wheelFortune.features.2',
+                'projects.wheelFortune.features.3',
+                'projects.wheelFortune.features.4',
+                'projects.wheelFortune.features.5',
+                'projects.wheelFortune.features.6'
             ],
-            complexity: 'Avanzado',
-            type: 'Full-stack',
+            complexity: 'projects.complexity.advanced',
+            type: 'projects.type.fullstack',
             demoUrl: 'https://github.com/lssebastianbustamante/wheel-fortune',
             highlights: [
-                'Arquitectura cliente-servidor completa',
-                'Integración avanzada con plataforma VTEX',
-                'Animaciones CSS complejas y fluidas',
-                'Lógica de negocio robusta con validaciones',
-                'Sistema de configuración vía Site Editor'
+                'projects.wheelFortune.highlights.0',
+                'projects.wheelFortune.highlights.1',
+                'projects.wheelFortune.highlights.2',
+                'projects.wheelFortune.highlights.3',
+                'projects.wheelFortune.highlights.4'
             ],
             metrics: {
                 duration: '3 meses',
@@ -62,28 +63,28 @@ const Projects: React.FC = () => {
             stack: 'React, TypeScript, Node.js, VTEX IO, CSS Animations, Master Data, GraphQL'
         },
         {
-            title: 'Filter Product Specification',
-            description: 'Sistema de filtros personalizados editable desde VTEX Admin, con navegación dinámica.',
-            fullDescription: 'Sistema avanzado de filtros para productos en VTEX IO que permite personalización completa desde el Admin. Incluye navegación dinámica, filtros por especificaciones, categorías y precios con interfaz intuitiva y performance optimizada.',
+            title: 'projects.filterSpec.title',
+            description: 'projects.filterSpec.description',
+            fullDescription: 'projects.filterSpec.fullDescription',
             technologies: ['React', 'TypeScript', 'VTEX IO', 'GraphQL', 'CSS Modules'],
             features: [
-                'Filtros personalizables desde VTEX Admin',
-                'Navegación dinámica y breadcrumbs',
-                'Filtros por especificaciones de producto',
-                'Filtros por categorías y subcategorías',
-                'Filtros por rangos de precios',
-                'Interfaz responsive y accesible',
-                'Performance optimizada con lazy loading'
+                'projects.filterSpec.features.0',
+                'projects.filterSpec.features.1',
+                'projects.filterSpec.features.2',
+                'projects.filterSpec.features.3',
+                'projects.filterSpec.features.4',
+                'projects.filterSpec.features.5',
+                'projects.filterSpec.features.6'
             ],
-            complexity: 'Intermedio',
-            type: 'Frontend',
+            complexity: 'projects.complexity.intermediate',
+            type: 'projects.type.frontend',
             demoUrl: 'https://github.com/lssebastianbustamante/filter-product-specification',
             highlights: [
-                'Integración profunda con VTEX Admin',
-                'Sistema de filtros altamente configurable',
-                'Navegación dinámica avanzada',
-                'Performance optimizada para grandes catálogos',
-                'Componentes reutilizables y modulares'
+                'projects.filterSpec.highlights.0',
+                'projects.filterSpec.highlights.1',
+                'projects.filterSpec.highlights.2',
+                'projects.filterSpec.highlights.3',
+                'projects.filterSpec.highlights.4'
             ],
             metrics: {
                 duration: '2 meses',
@@ -93,29 +94,29 @@ const Projects: React.FC = () => {
             stack: 'React, TypeScript, VTEX IO, GraphQL'
         },
         {
-            title: 'Microservicio Node.js',
-            description: 'Microservicio desarrollado en Node, Express y MongoDB, utiliza HAProxy para balanceo de carga y NATS JetStream para comunicación entre bases de datos.',
-            fullDescription: 'Microservicio robusto desarrollado con arquitectura moderna que implementa patrones de microservicios, balanceo de carga con HAProxy, comunicación asíncrona con NATS JetStream y persistencia distribuida en MongoDB. Incluye containerización con Docker y orquestación completa.',
+            title: 'projects.microservice.title',
+            description: 'projects.microservice.description',
+            fullDescription: 'projects.microservice.fullDescription',
             technologies: ['Node.js', 'TypeScript', 'MongoDB', 'Docker', 'Express', 'HAProxy', 'NATS JetStream'],
             features: [
-                'Arquitectura de microservicios escalable',
-                'Balanceo de carga con HAProxy',
-                'Comunicación asíncrona con NATS JetStream',
-                'Persistencia distribuida en MongoDB',
-                'Containerización completa con Docker',
-                'APIs RESTful con documentación Swagger',
-                'Monitoreo y logging avanzado',
-                'Patrones de Circuit Breaker y Retry'
+                'projects.microservice.features.0',
+                'projects.microservice.features.1',
+                'projects.microservice.features.2',
+                'projects.microservice.features.3',
+                'projects.microservice.features.4',
+                'projects.microservice.features.5',
+                'projects.microservice.features.6',
+                'projects.microservice.features.7'
             ],
-            complexity: 'Avanzado',
-            type: 'Backend',
+            complexity: 'projects.complexity.advanced',
+            type: 'projects.type.backend',
             demoUrl: 'https://github.com/lssebastianbustamante/docker-microservicio-node-express-mongo',
             highlights: [
-                'Arquitectura de microservicios completa',
-                'Implementación de patrones de resiliencia',
-                'Comunicación asíncrona avanzada',
-                'Containerización y orquestación',
-                'Alta disponibilidad y escalabilidad'
+                'projects.microservice.highlights.0',
+                'projects.microservice.highlights.1',
+                'projects.microservice.highlights.2',
+                'projects.microservice.highlights.3',
+                'projects.microservice.highlights.4'
             ],
             metrics: {
                 duration: '4 meses',
@@ -125,29 +126,29 @@ const Projects: React.FC = () => {
             stack: 'Node.js, TypeScript, MongoDB, Docker, Express'
         },
         {
-            title: 'Next.js Dashboard',
-            description: 'Dashboard moderno desarrollado con Next.js que incluye funcionalidades para gestionar facturas y clientes, con autenticación y base de datos PostgreSQL.',
-            fullDescription: 'Dashboard completo desarrollado con Next.js 14 y las últimas tecnologías. Incluye sistema de autenticación con bcrypt, gestión de facturas y clientes, base de datos PostgreSQL con Prisma ORM, y diseño responsive con Tailwind CSS. Implementa Server-Side Rendering y optimizaciones avanzadas.',
+            title: 'projects.nextDashboard.title',
+            description: 'projects.nextDashboard.description',
+            fullDescription: 'projects.nextDashboard.fullDescription',
             technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React', 'PostgreSQL', 'Bcrypt', 'Prisma'],
             features: [
-                'Dashboard moderno con métricas en tiempo real',
-                'Sistema de autenticación seguro con bcrypt',
-                'Gestión completa de facturas y clientes',
-                'Base de datos PostgreSQL con Prisma ORM',
-                'Diseño responsive con Tailwind CSS',
-                'Server-Side Rendering (SSR) optimizado',
-                'Componentes reutilizables y modulares',
-                'Validación de formularios avanzada'
+                'projects.nextDashboard.features.0',
+                'projects.nextDashboard.features.1',
+                'projects.nextDashboard.features.2',
+                'projects.nextDashboard.features.3',
+                'projects.nextDashboard.features.4',
+                'projects.nextDashboard.features.5',
+                'projects.nextDashboard.features.6',
+                'projects.nextDashboard.features.7'
             ],
-            complexity: 'Avanzado',
-            type: 'Full-stack',
+            complexity: 'projects.complexity.advanced',
+            type: 'projects.type.fullstack',
             demoUrl: 'https://github.com/lssebastianbustamante/nextjs-dashboard',
             highlights: [
-                'Next.js 14 con App Router',
-                'Autenticación y autorización completa',
-                'Base de datos relacional con Prisma',
-                'SSR y optimizaciones de performance',
-                'Diseño UX/UI profesional'
+                'projects.nextDashboard.highlights.0',
+                'projects.nextDashboard.highlights.1',
+                'projects.nextDashboard.highlights.2',
+                'projects.nextDashboard.highlights.3',
+                'projects.nextDashboard.highlights.4'
             ],
             metrics: {
                 duration: '3 meses',
@@ -170,7 +171,7 @@ const Projects: React.FC = () => {
 
     return (
         <section className="mb-16 projects">
-            <IconHeadLine title="Proyectos" />
+            <IconHeadLine title={intl.formatMessage({ id: 'projects.title' })} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projectList.map((project, index) => (
                     <ProjectCard 

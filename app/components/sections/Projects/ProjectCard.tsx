@@ -12,6 +12,7 @@ interface Props {
 }
 
 const ProjectCard: React.FC<Props> = ({ title, description, link, stack, complexity, type, onViewDetails }) => {
+    const intl = useIntl();
     const getComplexityColor = (complexity: string) => {
         switch (complexity) {
             case 'Avanzado':
@@ -43,7 +44,7 @@ const ProjectCard: React.FC<Props> = ({ title, description, link, stack, complex
     return (
         <div className="project-card border rounded-xl p-6 shadow-md hover:shadow-lg hover:shadow-[#93b7be] transition-all bg-white">
             <div className="flex justify-between items-start mb-3">
-                <h3 className="text-xl font-semibold text-[#000000] group-hover:text-[#fb733c] transition-colors">{title}</h3>
+                <h3 className="text-xl font-semibold text-[#000000] group-hover:text-[#fb733c] transition-colors"><FormattedMessage id={title} /></h3>
                 {/* <div className="type flex gap-2">
                     <span className={`px-2 py-1 text-white text-xs font-medium rounded-full ${getComplexityColor(complexity)}`}>
                         {complexity}
@@ -54,10 +55,10 @@ const ProjectCard: React.FC<Props> = ({ title, description, link, stack, complex
                 </div> */}
             </div>
             
-            <p className="text-[#4b4f58] mb-3 leading-relaxed line-clamp-3">{description}</p>
+            <p className="text-[#4b4f58] mb-3 leading-relaxed line-clamp-3">{intl.formatMessage({ id: description })}</p>
             
             <div className="mb-4 tech">
-                <p className="text-sm text-[#6b7280] mb-2 italic">Stack:</p>
+                <p className="text-sm text-[#6b7280] mb-2 italic"><FormattedMessage id="projects.card.stack" /></p>
                 <div className="flex flex-wrap gap-1">
                     {stack.split(', ').map((tech, index) => (
                         <span 
@@ -75,7 +76,7 @@ const ProjectCard: React.FC<Props> = ({ title, description, link, stack, complex
                     onClick={onViewDetails}
                     className="flex-1 px-4 py-2 bg-gradient-to-r from-[#e95b2f] to-[#f97316] text-white rounded-lg font-medium hover:from-[#d94c20] hover:to-[#e8640f] transition-all shadow-md hover:shadow-lg"
                 >
-                    Ver Detalles
+                    <FormattedMessage id="projects.card.viewDetails" />
                 </button>
             </div>
         </div>

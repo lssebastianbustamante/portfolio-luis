@@ -5,6 +5,9 @@ import esForm from './components/form/messages/es.json';
 import enForm from './components/form/messages/en.json';
 import esSkills from './components/sections/Skills/messages/es.json';
 import enSkills from './components/sections/Skills/messages/en.json';
+import esProjects from './components/sections/Projects/messages/es.json';
+import enProjects from './components/sections/Projects/messages/en.json';
+
 import React from 'react';
 
 type Lang = 'es' | 'en';
@@ -35,8 +38,8 @@ export default function IntlClientProvider({ children }: { children: React.React
         locale={language}
         messages={
           language === 'es'
-            ? { ...esForm, ...esSkills }
-            : { ...enForm, ...enSkills }
+            ? { ...esForm, ...esSkills, ...esProjects }
+            : { ...enForm, ...enSkills, ...enProjects }
         }
       >
         {children}
