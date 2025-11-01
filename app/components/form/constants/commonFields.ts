@@ -22,10 +22,13 @@ export const COMMON_FIELDS = {
         minLength: 5,
         maxLength: 50
     },
-    tyc: {
-        name: 'tyc',
-        type: 'checkbox',
-        label: 'form-terms',
-        required: true
-    }
+    mensaje: {
+        name: 'mensaje',
+        type: 'textarea',
+        label: 'form/form.label.mensaje',
+        required: false,
+        minLength: 0,
+        maxLength: 500
+    },
+    
 }

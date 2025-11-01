@@ -31,7 +31,7 @@ const BASE_STATE = {
   nombre: '',
   email: '',
   provincia: '',
-  tyc: 'false'
+  mensaje: '',
 }
 
 export const initialStateFields = {

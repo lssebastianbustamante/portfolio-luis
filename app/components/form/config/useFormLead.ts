@@ -12,16 +12,16 @@ import type { ValidationErrorType } from '../hook/useErrorMessage'
 import { useErrorMessage } from '../hook/useErrorMessage'
 
 import { FORM_FIELDS_ARG, FORM_FIELDS_COL, initialStateFields, REQUIRED_FIELDS_ARG, REQUIRED_FIELDS_COL, REQUIRED_FIELDS_PE } from '../constants'
-import { CountryCode, InitialStateFieldsInterface } from '../constants/initialState'
+import { CountryCode } from '../constants/initialState'
 
 
 
 
 
 
-type InputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => void;
+type InputChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 type SelectChangeHandler = (option: SelectOption) => void;
-type HandleInvalid = (e: React.InvalidEvent<HTMLInputElement>) => void
+type HandleInvalid = (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 interface FieldChangeHandlers {
     inputchange: InputChangeHandler;
     selectchange: SelectChangeHandler;
@@ -119,7 +119,7 @@ export const useFormLead = (
             status: STATUS.IDLE
         });
 
-        setFormData(initialStateFields[country] as InitialStateFieldsInterface[typeof country]);
+        setFormData(initialStateFields[country] as unknown as FormData);
 
         setErrors(ERROR_DEFAULT);
     };
@@ -210,7 +210,7 @@ export const useFormLead = (
 
     const createChangeHandlers = useCallback(
         (fieldName: string): FieldChangeHandlers => ({
-            inputchange: (e: React.ChangeEvent<HTMLInputElement>) => {
+            inputchange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
                 const { value, validity } = e.target
 
                 setFormData((prev: FormData) => ({ ...prev, [fieldName]: value }))
@@ -255,7 +255,7 @@ export const useFormLead = (
 
                 setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, ''))
             },
-            handleInvalid: (e: React.InvalidEvent<HTMLInputElement>) => {
+            handleInvalid: (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement>) => {
                 e.preventDefault()
                 validateAndUpdateField(
                     fieldName,
@@ -270,15 +270,8 @@ export const useFormLead = (
 
     const createInputClickHandler = useCallback(
         (): InputClickHandlers => ({
-            handleInputClick: (name: string) => (e: React.MouseEvent<HTMLInputElement>) => {
-                const target = e.currentTarget;
-                if (name === 'tyc') {
-                    const newValue = target.value === 'false' ? 'true' : 'false';
-                    setFormData((prev: FormData) => ({
-                        ...prev,
-                        [name]: newValue // Ahora manejamos tyc como string
-                    }));
-                }
+            handleInputClick: (_name: string) => (_e: React.MouseEvent<HTMLInputElement>) => {
+                // No-op: ya no se maneja tyc
             }
         }),
         []
@@ -302,12 +295,9 @@ export const useFormLead = (
         }
 
         const requiredFieldsValid = Array.from(requiredFields).every(validateField)
-        const termAndConditions = formData.tyc === 'true'; // Comparamos strings
-
         return requiredFieldsValid &&
             !formState.isSubmitting &&
-            !formState.hasSubmitted &&
-            termAndConditions
+            !formState.hasSubmitted
     }, [formData, errors, formState, country])
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -370,6 +360,7 @@ export const useFormLead = (
                             email: (formData as any).email ?? '',
                             nombre: (formData as any).nombre ?? '',
                             telefono: (formData as any).telefono ?? '',
+                            mensaje: (formData as any).mensaje ?? '',
                             createdAt: new Date().toISOString(),
                             source: 'portfolio-contact-form'
                         }),
