@@ -8,6 +8,7 @@ export type FieldType =
   | 'select'
   | 'checkbox'
   | 'number'
+  | 'textarea'
 
 export type ErrorType = FormErrors
 
@@ -37,9 +38,9 @@ export interface FormFieldProps {
   value: string
   error?: any
   onChange?: {
-    inputchange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    inputchange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     selectchange: (option: SelectOption) => void
-    handleInvalid: (e: React.InvalidEvent<HTMLInputElement>) => void
+    handleInvalid: (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   }
   onSelect?: SelectOption
   options?: SelectOption[]
@@ -48,7 +49,7 @@ export interface FormFieldProps {
   onClick?: {
     handleInputClick: (name: string) => (e: React.MouseEvent<HTMLInputElement>) => void
   };
-  onInvalid?: (e: React.FormEvent<HTMLInputElement>) => void
+  onInvalid?: (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   pattern?: string
   required?: boolean
   minLength?: number
@@ -74,7 +75,7 @@ export interface BaseFormData {
   nombre?: string;
   email?: string;
   provincia?: string;
-  tyc?: string; // Cambiado de boolean a string
+  mensaje?: string;
 }
 
 export interface ArgentinaFormData extends BaseFormData {

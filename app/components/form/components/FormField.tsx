@@ -28,6 +28,8 @@ const FormField: React.FC<FormFieldProps> = (props) => {
       return <LazyComponents.BaseInput {...props} type="text" />
     case 'email':
       return <LazyComponents.BaseInput {...props} type="email" />
+    case 'textarea':
+      return <LazyComponents.TextArea {...props} />
 
     default:
       return <LazyComponents.BaseInput {...props} />

@@ -5,8 +5,7 @@ export const REQUIRED_FIELDS_ARG = [
     'localidad',
     'provincia',
     'telefono',
-    'email',
-    'tyc'
+    'email'
 ] as const;
 export const REQUIRED_FIELDS_COL = [
     'nombre',
@@ -15,8 +14,7 @@ export const REQUIRED_FIELDS_COL = [
     'direccion',
     'provincia',
     'celular',
-    'email',
-    'tyc'
+    'email'
 ] as const;
 export const REQUIRED_FIELDS_PE = [
     'nombre',
@@ -26,8 +24,7 @@ export const REQUIRED_FIELDS_PE = [
     'provincia',
     'distrito',
     'celular',
-    'email',
-    'tyc'
+    'email'
 ] as const;
 export const ERROR_DEFAULT = {
     message: '',
@@ -37,6 +34,7 @@ export const ERROR_DEFAULT = {
 export const FORM_FIELDS_ARG = [
     COMMON_FIELDS.nombre,
     COMMON_FIELDS.email,
+    COMMON_FIELDS.mensaje,
     // {
     //     name: 'cuit',
     //     type: 'text',
@@ -107,7 +105,7 @@ export const FORM_FIELDS_ARG = [
     //     minLength: 5,
     //     maxLength: 50
     // },
-    COMMON_FIELDS.tyc
+    // COMMON_FIELDS.tyc
 ]
 
 export const FORM_FIELDS_COL = [
@@ -135,13 +133,13 @@ export const FORM_FIELDS_COL = [
         type: 'number',
         label: 'form/form.label.telefono',
         required: true,
-        pattern: '\d{9}*',
+        pattern: '\\d{9}*',
         maxLength: 999999999,
         minLength: 99999999
     },
     COMMON_FIELDS.email,
+    COMMON_FIELDS.mensaje,
     // COMMON_FIELDS.provincia,
-    COMMON_FIELDS.tyc
 ]
 
 export const FORM_FIELDS_PE = [
@@ -170,11 +168,12 @@ export const FORM_FIELDS_PE = [
         type: 'number',
         label: 'form/form.label.telefono',
         required: true,
-        pattern: '\d{9}*',
+        pattern: '\\d{9}*',
         maxLength: 999999999,
         minLength: 99999999
     },
     COMMON_FIELDS.email,
+    COMMON_FIELDS.mensaje,
 
     {
         name: 'direccion',
@@ -193,5 +192,4 @@ export const FORM_FIELDS_PE = [
     //     required: true,
     //     minLength: 5,
     // },
-    COMMON_FIELDS.tyc
 ]
