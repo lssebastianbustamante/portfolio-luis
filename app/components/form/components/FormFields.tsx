@@ -18,9 +18,9 @@ import { FORM_FIELDS_ARG, FORM_FIELDS_COL, FORM_FIELDS_PE } from '../constants'
 import FormField from './FormField'
 
 // Agregar después de las importaciones existentes
-type InputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => void
+type InputChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 type SelectChangeHandler = (option: SelectOption) => void
-type HandleInvalid = (e: React.InvalidEvent<HTMLInputElement>) => void
+type HandleInvalid = (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 
 export interface FieldChangeHandlers {
   inputchange: InputChangeHandler
