@@ -64,6 +64,10 @@ const messages = defineMessages({
   placeHolderCelphone: {
     id: 'form/form.placeholder.celular',
     defaultMessage: 'Celular'
+  },
+  placeHolderMessage: {
+    id: 'form/form.placeholder.mensaje',
+    defaultMessage: 'Ingrese su mensaje'
   }
 })
 
@@ -103,6 +107,8 @@ export const usePlaceholderMessage = (fieldName: string) => {
       return intl.formatMessage(messages.placeHolderCelphone)
     case 'distrito':
       return intl.formatMessage(messages.placeHolderDistrito)
+    case 'mensaje':
+      return intl.formatMessage(messages.placeHolderMessage)
     default:
       return ''
   }

@@ -28,7 +28,7 @@ const TextArea: React.FC<FormFieldProps> = (props) => {
   return (
     <div className={CSS_HANDLES[0]}>
       <label className={CSS_HANDLES[1]} htmlFor={name}>
-        <FormattedMessage id={label} defaultMessage={'Ingrese su ' + name} />
+        <FormattedMessage id="form/form.label.mensaje" defaultMessage={'Ingrese su ' + name} />
       </label>
       <textarea
         className={`${CSS_HANDLES[2]} ${error ? CSS_HANDLES[3] : ''}`}

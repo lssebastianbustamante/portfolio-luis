@@ -148,5 +148,9 @@
   "form/modal.title": "¡Hola! Soy un desarrollador web con experiencia en React y TypeScript. ",
   "form/container.title": "¡Formulario de Contacto!",
   "form/container.subtitle": "Por favor, completa el siguiente formulario.",
-  "form/container.textButton": "Contactame"
+  "form/container.textButton": "Contactame",
+  "form/form.label.mensaje": "Mensaje",
+  "form/form.error.mensaje": "El mensaje es requerido",
+  "form/form.error.mensaje.defaultMessage": "El campo Mensaje no puede estar vacío",
+  "form/form.placeholder.mensaje": "Ingrese su mensaje"
 }
