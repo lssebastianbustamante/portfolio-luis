@@ -48,8 +48,9 @@ const TextArea: React.FC<FormFieldProps> = (props) => {
         required={required}
         minLength={minLength}
         maxLength={maxLength}
+        style={{ height: '100px' }}
         placeholder={usePlaceholderMessage(name)}
-        rows={4}
+        rows={9}
       />
       {error && (
         <p className={CSS_HANDLES[4]}>

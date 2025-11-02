@@ -34,7 +34,7 @@ export const ERROR_DEFAULT = {
 export const FORM_FIELDS_ARG = [
     COMMON_FIELDS.nombre,
     COMMON_FIELDS.email,
-    COMMON_FIELDS.mensaje,
+
     // {
     //     name: 'cuit',
     //     type: 'text',
@@ -95,6 +95,7 @@ export const FORM_FIELDS_ARG = [
         maxLength: 9999999999,
         minLength: 999999999
     },
+        COMMON_FIELDS.mensaje,
     // COMMON_FIELDS.provincia,
     // {
     //     name: 'localidad',
