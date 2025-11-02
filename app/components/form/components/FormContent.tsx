@@ -7,14 +7,10 @@ import * as LazyComponents from './lazyComponents'
 interface FormContentProps {
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 formHook: any
-
-  tiposDeNegocio: string
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  dataDistricts: any
   currentCountry: string
 }
 
-const FormContent = memo(({ formHook, tiposDeNegocio, currentCountry, dataDistricts }: FormContentProps) => {
+const FormContent = memo(({ formHook, currentCountry }: FormContentProps) => {
 
   return (
     <LazyComponents.FormLeadsModal
@@ -26,7 +22,6 @@ const FormContent = memo(({ formHook, tiposDeNegocio, currentCountry, dataDistri
       <LazyComponents.FormFields
         formData={formHook.formData}
         errors={formHook.errors}
-        tiposDeNegocio={tiposDeNegocio}
         createChangeHandlers={formHook.createChangeHandlers}
         createInputClickHandler={formHook.createInputClickHandler}
         handleBlur={formHook.handleBlur}
@@ -34,7 +29,6 @@ const FormContent = memo(({ formHook, tiposDeNegocio, currentCountry, dataDistri
         isValidFormToSubmit={formHook.isValidFormToSubmit}
         formState={formHook.formState}
         country={currentCountry}
-        dataDistricts={dataDistricts}
         key={currentCountry} // Agregar la clave aquí para forzar la re-renderización
       />
     </LazyComponents.FormLeadsModal>

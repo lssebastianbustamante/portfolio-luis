@@ -28,7 +28,6 @@ export interface FieldChangeHandlers {
 export interface FormFieldsProps {
   formData: Record<string, string>
   errors: Record<string, string>
-  tiposDeNegocio: string
   createChangeHandlers: (fieldName: string) => FieldChangeHandlers
   createInputClickHandler: (fieldName: string) => InputClickHandlers
   handleBlur: (
@@ -40,8 +39,6 @@ export interface FormFieldsProps {
     isSubmitting: boolean
   }
   country: string
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  dataDistricts: any
 }
 
 const CSS_HANDLES = [
@@ -59,20 +56,10 @@ const FormFields: React.FC<FormFieldsProps> = ({
   handleSubmit,
   isValidFormToSubmit,
   formState,
-  country,
-  tiposDeNegocio,
-  dataDistricts
+  country
 }) => {
 
 
-
-  const memoizedOptions = () => {
-    return {
-      tipoNegocio: undefined as unknown as SelectOption[] | undefined,
-      provincia: undefined as unknown as SelectOption[] | undefined,
-      distrito: undefined as unknown as SelectOption[] | undefined
-    }
-  }
 
   // Conditional render para estado de carga
   if (formState.isSubmitting) {
@@ -90,7 +77,6 @@ const FormFields: React.FC<FormFieldsProps> = ({
   return (
     <div className={CSS_HANDLES[0]}>
       {fields.map((field: FormFieldConfig) => {
-        const fieldOptions = undefined
         return (
           <FormField
             key={field.name}
@@ -106,7 +92,6 @@ const FormFields: React.FC<FormFieldsProps> = ({
             pattern={field.pattern}
             onClick={createInputClickHandler(field.name)}
             onBlur={createChangeHandlers(field.name).handleInvalid}
-            options={fieldOptions}
           />
         )
       })}

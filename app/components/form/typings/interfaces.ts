@@ -65,7 +65,6 @@ export interface CssHandles {
 export interface SelectOption {
   label?: string;
   value?: string;
-  distrito?: string[];
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   styles?: any;
   disabled?: boolean;
@@ -74,13 +73,11 @@ export interface SelectOption {
 export interface BaseFormData {
   nombre?: string;
   email?: string;
-  provincia?: string;
   mensaje?: string;
 }
 
 export interface ArgentinaFormData extends BaseFormData {
   cuit?: string;
-  tipoNegocio?: string;
   telefono?: string;
   entreCalles?: string;
   calle?: string;
@@ -96,7 +93,6 @@ export interface ColombiaFormData extends BaseFormData {
 }
 
 export interface PeruFormData extends BaseFormData {
-  distrito?: string;
   celular?: string;
   calle?: string;
 
@@ -124,22 +120,12 @@ export interface LeadRegisterPropsArg {
   subTitleBlock?: string;
   textButton?: string;
   canonicalUrl?: string;
-  tiposDeNegocio?: string;
 }
 
 export type DataLeadsArg = {
   nombre: string;
-  cuit: string;
-  tipoNegocio: string;
-  calle: string;
-  altura: string;
-  entreCalles: string;
-  codigoPostal: string;
-  localidad: string;
-  provincia: string;
   telefono: string;
   email: string;
-  tyc: boolean;
 };
 
 export interface ProvinciaData {

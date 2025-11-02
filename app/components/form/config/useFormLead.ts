@@ -2,7 +2,7 @@ import type React from 'react'
 import { useState, useCallback, useEffect } from 'react'
 
 
-import type { ArgentinaFormData, ColombiaFormData, FormData, FormErrors, FormState, PeruFormData, SelectOption } from '../typings/interfaces'
+import type { FormData, FormErrors, FormState, SelectOption } from '../typings/interfaces'
 import { STATUS } from '../typings/interfaces'
 
 import { updateFieldError, validateRequiredFields } from '../utils'
@@ -13,12 +13,6 @@ import { useErrorMessage } from '../hook/useErrorMessage'
 
 import { FORM_FIELDS_ARG, FORM_FIELDS_COL, initialStateFields, REQUIRED_FIELDS_ARG, REQUIRED_FIELDS_COL, REQUIRED_FIELDS_PE } from '../constants'
 import { CountryCode } from '../constants/initialState'
-
-
-
-
-
-
 type InputChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 type SelectChangeHandler = (option: SelectOption) => void;
 type HandleInvalid = (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement>) => void
@@ -49,38 +43,6 @@ const isValidCountry = (country: string): country is CountryCode => {
 };
 
 
-
-interface AddressFormatter {
-    [key: string]: (formData: FormData) => string;
-}
-
-class AddressFormattingError extends Error {
-    constructor(country: string, message?: string) {
-        super(`Error formateando dirección para ${country}: ${message}`);
-        this.name = 'AddressFormattingError';
-    }
-}
-
-const ADDRESS_FORMATTERS: AddressFormatter = {
-    ARG: (formData: ArgentinaFormData) => {
-        if (!('calle' in formData)) {
-            throw new AddressFormattingError('Argentina', 'Formato de dirección no válido');
-        }
-        return `${formData.calle} ${formData.altura}, ${formData.localidad}, ${formData.provincia}, ${formData.codigoPostal}, Argentina`;
-    },
-    COL: (formData: ColombiaFormData) => {
-        if (!('ciudad' in formData)) {
-            throw new AddressFormattingError('Colombia', 'Formato de dirección no válido');
-        }
-        return `${formData.ciudad}, ${formData.provincia}, Colombia`;
-    },
-    PER: (formData: PeruFormData) => {
-        if (!('distrito' in formData)) {
-            throw new AddressFormattingError('Perú', 'Formato de dirección no válido');
-        }
-        return `${formData.distrito}, ${formData.provincia}, Perú`;
-    }
-};
 
 
 export const useFormLead = (

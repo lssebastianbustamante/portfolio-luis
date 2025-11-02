@@ -31,12 +31,6 @@ export const schemaForm = {
       type: 'string',
       description: 'Ingrese la url canonica del formulario',
       default: ''
-    },
-    tiposDeNegocio: {
-      title: 'Tipos de negocio',
-      type: 'string',
-      description: 'Tipos de negocio ej: "Kiosco, Almacén, Supermercado, etc"',
-      default: 'Kiosco, Almacén, Supermercado, otros'
     }
   }
 }
