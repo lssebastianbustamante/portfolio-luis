@@ -106,12 +106,12 @@ input[type=number] {
 }
 
 .formLeadTitle {
-  font-family: Mdlz, sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 32px;
   font-weight: 400;
   line-height: 30px;
   text-align: center;
-  color: #4f2170;
+  color: #fb733c;
   padding-left: 30px;
   margin-bottom: 0;
   padding-right: 0;
@@ -132,7 +132,7 @@ input[type=number] {
   font-weight: 400;
   line-height: 21.97px;
   text-align: center;
-  color: #4f2170;
+  color: #145363;
   padding: 0 30px;
   margin-top: 13px;
 
@@ -175,7 +175,7 @@ input[type=number] {
   border: 0;
   padding: 8px 12px;
   margin-top: 10px;
-  font-family: Calibri;
+  font-family: "Noto Sans", sans-serif;
   
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -205,7 +205,7 @@ input[type=number] {
   line-height: 18.3px;
   text-align: left;
   font-weight: 700;
-  color: #4f2170;
+  color: #145363;
   cursor: pointer;
 }
 
@@ -217,8 +217,8 @@ input[type=number] {
 }
 
 .formLeadSubmitBtn {
-  border: 1px solid #4f2170;
-  background-color: #4f2170;
+  border: 1px solid #145363;
+  background-color: #145363;
   text-transform: capitalize;
   font-size: 18px;
   font-weight: 700;
@@ -230,7 +230,7 @@ input[type=number] {
   height: 55px;
   cursor: pointer;
   margin-top: 10px;
-  font-family: Calibri, sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .formLeadSubmitBtn:disabled {
@@ -310,7 +310,7 @@ input[type=number] {
   width: 16px;
   height: 16px;
   background-color: white;
-  border: 2px solid #4f2170;
+  border: 2px solid #145363;
   /* Color púrpura */
   border-radius: 4px;
   display: inline-block;
@@ -320,9 +320,9 @@ input[type=number] {
 }
 
 input[type='checkbox']:checked+.formLeadCheckmark {
-  background-color: #4f2170;
+  background-color: #145363;
   /* Fondo púrpura cuando está seleccionado */
-  border-color: #4f2170;
+  border-color: #145363;
 }
 
 .formLeadCheckmark::after {
@@ -370,7 +370,7 @@ input[type='checkbox']:checked+.formLeadCheckmark {
 }
 
 .formLeadCheckboxLink {
-  color: #4f2170;
+  color: #145363;
   text-decoration: underline;
 }
 }
@@ -434,7 +434,7 @@ input[type='checkbox']:checked+.formLeadCheckmark {
 }
 
 .titleInfoForm {
-  font-family: Mdlz, sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 32px;
 
   @media screen and (max-width: 767px) {
@@ -478,8 +478,8 @@ background-color: #145363;
 
 
 .formLeadSubmitBtn {
-  border: 1px solid #4f2170;
-  background-color: #4f2170;
+  border: 1px solid #145363;
+  background-color: #145363;
   text-transform: capitalize;
   font-size: 16px;
   font-weight: 700;
@@ -518,7 +518,7 @@ background-color: #145363;
 }
 
 .titleInfoFormCustom {
-  font-family: Mdlz, sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 32px;
   text-align: center;
   padding: 0 10px;
@@ -543,16 +543,16 @@ background-color: #145363;
   padding: .5rem 2.5rem;
   border: none;
   text-align: center;
-  color: #4f2170;
+  color: #145363;
   cursor: pointer;
-  font-family: Mdlz, sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 
 
 .buttonFeedback {
-  border: 1px solid #4f2170;
-  background-color: #4f2170;
+  border: 1px solid #145363;
+  background-color: #145363;
   text-transform: capitalize;
   font-size: 16px;
   font-weight: 700;
@@ -570,7 +570,7 @@ background-color: #145363;
   font-weight: 400;
   line-height: 21.97px;
   text-align: center;
-  color: #4f2170;
+  color: #145363;
   padding: 0 30px;
 
   @media screen and (min-width: 64rem) {
@@ -580,12 +580,12 @@ background-color: #145363;
 }
 
 .fallbackLeadTitle {
-  font-family: Mdlz, sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 32px;
   font-weight: 400;
   line-height: 30px;
   text-align: center;
-  color: #4f2170;
+  color: #145363;
   padding-left: 30px;
   margin-bottom: 0;
   padding-right: 0;

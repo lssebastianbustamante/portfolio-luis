@@ -3,7 +3,6 @@ import { COMMON_FIELDS } from './commonFields'
 export const REQUIRED_FIELDS_ARG = [
     'nombre',
     'localidad',
-    'provincia',
     'telefono',
     'email'
 ] as const;
@@ -12,7 +11,6 @@ export const REQUIRED_FIELDS_COL = [
     'document',
     'pdv',
     'direccion',
-    'provincia',
     'celular',
     'email'
 ] as const;
@@ -21,8 +19,6 @@ export const REQUIRED_FIELDS_PE = [
     'document',
     'pdv',
     'direccion',
-    'provincia',
-    'distrito',
     'celular',
     'email'
 ] as const;

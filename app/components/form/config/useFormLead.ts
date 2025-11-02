@@ -165,20 +165,6 @@ export const useFormLead = (
         const fields = country === 'ARG' ? FORM_FIELDS_ARG : country === 'COL' ? FORM_FIELDS_COL : country === 'PER' ? FORM_FIELDS_COL : FORM_FIELDS_ARG
 
         if (!validity) {
-            // Validación específica para selects
-            const field = fields.find(f => f.name === fieldName)
-
-            if (field?.type === 'select') {
-                const isValid = _value && _value.length > 0
-                if (!isValid) {
-                    const message = getErrorMessage(fieldName, 'required')
-                    setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, message))
-                    return false
-                }
-                // Limpiar error si es válido
-                setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, ''))
-                return true
-            }
             return true
         }
 
@@ -217,41 +203,18 @@ export const useFormLead = (
                 validateAndUpdateField(fieldName, value, validity)
             },
             selectchange: (option: SelectOption | null) => {
-                // Si la opción es null, limpiar los campos relacionados
+                // Si la opción es null, limpiar el campo
                 if (!option) {
-                    if (fieldName === 'provincia') {
-                        setFormData((prev: FormData) => ({
-                            ...prev,
-                            provincia: '',
-                            distrito: ''
-                        }))
-                        // Limpiar errores relacionados
-                        setErrors((prev: FormErrors) => ({
-                            ...prev,
-                            provincia: '',
-                            distrito: ''
-                        }))
-                    } else {
-                        setFormData((prev: FormData) => ({ ...prev, [fieldName]: '' }))
-                        setErrors((prev: FormErrors) => ({ ...prev, [fieldName]: '' }))
-                    }
+                    setFormData((prev: FormData) => ({ ...prev, [fieldName]: '' }))
+                    setErrors((prev: FormErrors) => ({ ...prev, [fieldName]: '' }))
                     return
                 }
 
                 const value = option.value
                 if (!value) return
 
-                if (fieldName === 'provincia') {
-                    setFormData((prev: FormData) => ({
-                        ...prev,
-                        provincia: value,
-                        distrito: '' // Resetear distrito
-                    }))
-                    validateAndUpdateField('provincia', value)
-                } else {
-                    setFormData((prev: FormData) => ({ ...prev, [fieldName]: value }))
-                    validateAndUpdateField(fieldName, value)
-                }
+                setFormData((prev: FormData) => ({ ...prev, [fieldName]: value }))
+                validateAndUpdateField(fieldName, value)
 
                 setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, ''))
             },
@@ -280,21 +243,12 @@ export const useFormLead = (
     const isValidFormToSubmit = useCallback((): boolean => {
         const phoneField = country === 'ARG' ? 'telefono' : 'celular'
         const requiredFields = new Set<string>(['nombre', 'email', phoneField])
-
-        // Verificar específicamente provincia y distrito cuando corresponda
-        const validateField = (fieldName: string) => {
+        const requiredFieldsValid = Array.from(requiredFields).every((fieldName: string) => {
             const value = formData[fieldName as keyof typeof formData]
             const hasValue = Boolean(value)
             const hasNoError = !errors[fieldName]
-
-            if (fieldName === 'distrito' && country === 'PER') {
-                return formData.provincia ? (hasValue && hasNoError) : true
-            }
-
             return hasValue && hasNoError
-        }
-
-        const requiredFieldsValid = Array.from(requiredFields).every(validateField)
+        })
         return requiredFieldsValid &&
             !formState.isSubmitting &&
             !formState.hasSubmitted
@@ -408,11 +362,7 @@ export const useFormLead = (
         }
     }
 
-    useEffect(() => {
-        if (country === 'PER' && !formData.provincia) {
-            setFormData((prev: FormData) => ({ ...prev, distrito: '' }))
-        }
-    }, [country, formData.provincia])
+    // Efecto de reseteo de distrito eliminado: ya no existen provincia/distrito
 
     return {
         formData,
