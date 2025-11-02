@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 
 
 import type { FormData, FormErrors, FormState, SelectOption } from '../typings/interfaces'

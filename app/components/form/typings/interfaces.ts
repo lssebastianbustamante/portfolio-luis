@@ -128,16 +128,6 @@ export type DataLeadsArg = {
   email: string;
 };
 
-export interface ProvinciaData {
-  provincias: ProvinciaProps[];
-}
-
-export interface ProvinciaProps {
-  nombre: string;
-  id?: string;
-  distritos?: string[];
-}
-
 export interface FormErrors {
   error: string;
   message: string;
