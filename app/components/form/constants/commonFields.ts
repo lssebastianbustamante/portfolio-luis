@@ -14,14 +14,6 @@ export const COMMON_FIELDS = {
         label: 'form/form.label.email',
         required: true,
     },
-    provincia: {
-        name: 'provincia',
-        type: 'select',
-        label: 'form/form.label.provincia',
-        required: true,
-        minLength: 5,
-        maxLength: 50
-    },
     mensaje: {
         name: 'mensaje',
         type: 'textarea',

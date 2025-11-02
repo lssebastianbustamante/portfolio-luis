@@ -9,10 +9,6 @@ const messages = defineMessages({
     id: 'form/form.placeholder.cuit',
     defaultMessage: 'CUIT'
   },
-  placeHolderBusinessType: {
-    id: 'form/form.placeholder.tipoNegocio',
-    defaultMessage: 'Tipo de negocio'
-  },
   placeHolderStreet: {
     id: 'form/form.placeholder.calle',
     defaultMessage: 'Calle'
@@ -28,10 +24,6 @@ const messages = defineMessages({
   placeHolderPostalCode: {
     id: 'form/form.placeholder.codigoPostal',
     defaultMessage: 'Código postal'
-  },
-  placeHolderProvince: {
-    id: 'form/form.placeholder.provincia',
-    defaultMessage: 'Provincia'
   },
   placeHolderCity: {
     id: 'form/form.placeholder.localidad',
@@ -57,10 +49,6 @@ const messages = defineMessages({
     id: 'form/form.placeholder.pdv',
     defaultMessage: 'Ingrese su punto de venta'
   },
-  placeHolderDistrito: {
-    id: 'form/form.placeholder.distrito',
-    defaultMessage: 'Distrito'
-  },
   placeHolderCelphone: {
     id: 'form/form.placeholder.celular',
     defaultMessage: 'Celular'
@@ -79,8 +67,6 @@ export const usePlaceholderMessage = (fieldName: string) => {
       return intl.formatMessage(messages.placeHolderName)
     case 'cuit':
       return intl.formatMessage(messages.placeHolderCuit)
-    case 'tipoNegocio':
-      return intl.formatMessage(messages.placeHolderBusinessType)
     case 'calle':
       return intl.formatMessage(messages.placeHolderStreet)
     case 'altura':
@@ -89,8 +75,6 @@ export const usePlaceholderMessage = (fieldName: string) => {
       return intl.formatMessage(messages.placeHolderBetweenStreets)
     case 'codigoPostal':
       return intl.formatMessage(messages.placeHolderPostalCode)
-    case 'provincia':
-      return intl.formatMessage(messages.placeHolderProvince)
     case 'localidad':
       return intl.formatMessage(messages.placeHolderCity)
     case 'telefono':
@@ -105,8 +89,6 @@ export const usePlaceholderMessage = (fieldName: string) => {
       return intl.formatMessage(messages.placeHolderPdv)
     case 'celular':
       return intl.formatMessage(messages.placeHolderCelphone)
-    case 'distrito':
-      return intl.formatMessage(messages.placeHolderDistrito)
     case 'mensaje':
       return intl.formatMessage(messages.placeHolderMessage)
     default:

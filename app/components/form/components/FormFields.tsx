@@ -10,16 +10,13 @@ import type {
 } from '../typings/interfaces'
 import * as LazyComponents from './lazyComponents'
 
-import {  listadoTipoDeNegocios, mapProvincias } from '../utils'
-import { mapDistritos } from '../utils/mapProvincias'
 
 import LoadingFallback from './LoadingFallback'
 import { FORM_FIELDS_ARG, FORM_FIELDS_COL, FORM_FIELDS_PE } from '../constants'
 import FormField from './FormField'
 
-// Agregar después de las importaciones existentes
 type InputChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-type SelectChangeHandler = (option: SelectOption) => void
+type SelectChangeHandler = (option: SelectOption | null) => void
 type HandleInvalid = (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 
 export interface FieldChangeHandlers {
@@ -31,7 +28,6 @@ export interface FieldChangeHandlers {
 export interface FormFieldsProps {
   formData: Record<string, string>
   errors: Record<string, string>
-  tiposDeNegocio: string
   createChangeHandlers: (fieldName: string) => FieldChangeHandlers
   createInputClickHandler: (fieldName: string) => InputClickHandlers
   handleBlur: (
@@ -43,18 +39,6 @@ export interface FormFieldsProps {
     isSubmitting: boolean
   }
   country: string
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  dataDistricts: any
-}
-
-// Definir las claves posibles para los campos
-type FieldName = 'tipoNegocio' | 'provincia' | 'distrito'
-
-
-
-// Type guard para validar nombres de campo
-const isValidFieldName = (name: string): name is FieldName => {
-  return ['tipoNegocio', 'provincia', 'distrito'].includes(name)
 }
 
 const CSS_HANDLES = [
@@ -72,23 +56,10 @@ const FormFields: React.FC<FormFieldsProps> = ({
   handleSubmit,
   isValidFormToSubmit,
   formState,
-  country,
-  tiposDeNegocio,
-  dataDistricts
+  country
 }) => {
 
 
-
-  const memoizedOptions = () => {
-    return {
-      tipoNegocio: listadoTipoDeNegocios(tiposDeNegocio),
-      provincia: dataDistricts ? mapProvincias(dataDistricts) : undefined,
-      distrito:
-        country === 'PE' && formData.provincia && dataDistricts
-          ? mapDistritos(dataDistricts, formData.provincia)
-          : undefined
-    }
-  }
 
   // Conditional render para estado de carga
   if (formState.isSubmitting) {
@@ -106,10 +77,6 @@ const FormFields: React.FC<FormFieldsProps> = ({
   return (
     <div className={CSS_HANDLES[0]}>
       {fields.map((field: FormFieldConfig) => {
-        const fieldOptions =
-          field.type === 'select' && isValidFieldName(field.name)
-            ? memoizedOptions()[field.name]
-            : undefined
         return (
           <FormField
             key={field.name}
@@ -125,7 +92,6 @@ const FormFields: React.FC<FormFieldsProps> = ({
             pattern={field.pattern}
             onClick={createInputClickHandler(field.name)}
             onBlur={createChangeHandlers(field.name).handleInvalid}
-            options={fieldOptions}
           />
         )
       })}

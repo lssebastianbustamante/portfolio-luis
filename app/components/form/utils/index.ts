@@ -1,7 +1,3 @@
-export {getSellerByGeo} from './getSellerByGeo'
-export {mapProvincias} from './mapProvincias'
-export {listadoTipoDeNegocios} from './listaNegocios'
-export {fetchDocument} from './fetchDocument'
 export {getInputMode} from './getInputMode'
 export {colourStyles} from './colourStyles'
 export {updateFieldError} from './errorHandlers'

@@ -25,7 +25,7 @@ const SelectField: React.FC<FormFieldProps> = ({
     options
   }) => {
 
-    if (!options?.length && name !== 'distrito') {
+    if (!options?.length) {
       return (
         <div className={CSS_HANDLES[1]}>
           <label className={CSS_HANDLES[0]} htmlFor={name}>
