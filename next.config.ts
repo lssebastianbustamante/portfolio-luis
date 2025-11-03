@@ -3,6 +3,20 @@ const nextConfig = {
   // Variables de entorno públicas
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
+    // Exponer solo las variables necesarias en el cliente
+    NEXT_PUBLIC_LOG_LEVEL: process.env.LOG_LEVEL || 'info',
+    NEXT_PUBLIC_NODE_ENV: process.env.NODE_ENV || 'development',
+    NEXT_PUBLIC_APP_ENV: process.env.APP_ENV || 'development',
+  },
+  
+  // Habilitar source maps en desarrollo
+  productionBrowserSourceMaps: process.env.NODE_ENV === 'development',
+  
+  // Configuración de logging
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
   },
   eslint: {
     // Evita que ESLint bloquee el build en producción (los errores seguirán en dev)

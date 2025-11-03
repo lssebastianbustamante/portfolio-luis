@@ -1,5 +1,8 @@
 import type React from 'react'
 import { useState, useCallback } from 'react'
+import { createLogger } from '@/app/utils/logger'
+
+const logger = createLogger('useFormLead')
 import type { ValidationErrorType } from '../hook/useErrorMessage'
 import type { FormData, FormErrors, FormState, SelectOption } from '../typings/interfaces'
 import { STATUS } from '../typings/interfaces'
@@ -220,9 +223,9 @@ export const useFormLead = (
         const isValid = Array.from(requiredFields).every((field: string) =>
             validateAndUpdateField(field, formData[field as keyof typeof formData] as string)
         )
-        console.log('Validación de campos:', isValid)
+        logger.debug('Validación de campos:', { isValid })
         // Validar el formulario completo
-        console.log('Validación del formulario:', isValidFormToSubmit())
+        logger.debug('Validación del formulario:', { isValid: isValidFormToSubmit() })
         if (!isValid) {
             setErrors((prev: FormErrors) => ({
                 ...prev,
@@ -264,25 +267,89 @@ export const useFormLead = (
                     clearTimeout(timeoutId)
                     if (response.ok) {
                         finalResponse = response
+                        if(process.env.NODE_ENV === 'development') {
+                            const responseData = await response.clone().json().catch(() => ({}));
+                            
+                            logger.info('✅ Formulario enviado exitosamente', {
+                                status: response.status,
+                                statusText: response.statusText,
+                                attempt: attempt + 1,
+                                maxRetries
+                            });
+                            
+                            logger.debug('📋 Respuesta detallada del servidor', { 
+                                status: response.status,
+                                statusText: response.statusText,
+                                headers: Object.fromEntries(response.headers.entries()),
+                                data: responseData,
+                                requestData: {
+                                    url: '/api/submit-form',
+                                    method: 'POST',
+                                    body: submitData
+                                }
+                            });
+                        }
                         break
                     }
                     if (attempt === maxRetries) {
-                        throw new Error('Error al enviar el formulario')
+                        const errorMessage = '❌ Error al enviar el formulario - máximo de reintentos alcanzado';
+                        logger.error(errorMessage, {
+                            attempt: attempt + 1,
+                            maxRetries,
+                            status: response?.status,
+                            statusText: response?.statusText,
+                            requestData: {
+                                url: '/api/submit-form',
+                                method: 'POST',
+                                body: submitData
+                            }
+                        });
+                        throw new Error(errorMessage);
                     }
                 } catch (err) {
-                    clearTimeout(timeoutId)
+                    clearTimeout(timeoutId);
+                    const error = err as Error;
+                    
+                    logger.error('❌ Error en el intento de envío del formulario', {
+                        attempt: attempt + 1,
+                        maxRetries,
+                        error: {
+                            name: error.name,
+                            message: error.message,
+                            ...(process.env.NODE_ENV === 'development' && { stack: error.stack })
+                        },
+                        requestData: {
+                            url: '/api/submit-form',
+                            method: 'POST',
+                            body: submitData
+                        },
+                        isAbortError: error.name === 'AbortError',
+                        isNetworkError: !navigator.onLine ? 'Offline' : false
+                    });
+
                     if (attempt === maxRetries) {
-                        throw err
+                        throw new Error(`Error al enviar el formulario después de ${maxRetries + 1} intentos: ${error.message}`);
                     }
                 }
             }
 
             if (!finalResponse) {
-                throw new Error('Error al enviar el formulario')
+                const errorMessage = '❌ Error crítico: No se pudo obtener respuesta del servidor después de todos los reintentos';
+                logger.error(errorMessage, {
+                    maxRetries,
+                    lastError: 'No se recibió respuesta del servidor',
+                    requestData: {
+                        url: '/api/submit-form',
+                        method: 'POST',
+                        body: submitData
+                    }
+                });
+                throw new Error(errorMessage);
             }
 
-            let parsed: unknown = null
-            const raw = await finalResponse.text()
+            let parsed: unknown = null;
+            const raw = await finalResponse.text();
+            
             try {
                 parsed = raw ? JSON.parse(raw) : null
             } catch {
@@ -295,12 +362,20 @@ export const useFormLead = (
                 hasSubmitted: true,
                 status: STATUS.FINISH
             }))
-            
         } catch (error) {
-            console.error('Error:', error)
-            setFormState((prev: FormState) => ({ ...prev, status: STATUS.ERROR }))
+            logger.error('Error al enviar el formulario', { 
+                error: error instanceof Error ? error.message : 'Error desconocido',
+                stack: error instanceof Error ? error.stack : undefined,
+                formData: {
+                    email: formData.email ? '***' : 'No proporcionado',
+                    nombre: formData.nombre ? '***' : 'No proporcionado',
+                    hasMessage: !!(formData as any).mensaje,
+                    phoneLength: (formData as any).telefono?.length || 0
+                }
+            });
+            setFormState(prev => ({ ...prev, status: STATUS.ERROR }));
         } finally {
-            setFormState((prev: FormState) => ({ ...prev, isSubmitting: false }))
+            setFormState(prev => ({ ...prev, isSubmitting: false }));
         }
     }
 
