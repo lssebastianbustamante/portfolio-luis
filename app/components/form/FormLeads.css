@@ -78,6 +78,11 @@ input[type=number] {
   position: relative;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 1rem;
+  }
 }
 
 .formLeadButtonClose {
@@ -85,7 +90,7 @@ input[type=number] {
   background: none;
   position: absolute;
   right: 0px;
-  top: 28px;
+  top: 0;
   z-index: 9;
   cursor: pointer !important;
 
@@ -111,10 +116,10 @@ input[type=number] {
   font-weight: 400;
   line-height: 30px;
   text-align: center;
-  color: #fb733c;
-  padding-left: 30px;
+  color: var(--primary-orange);
+  padding-left: 0;
   margin-bottom: 0;
-  padding-right: 0;
+  padding: 0 30px;
 
   @media screen and (min-width: 64rem) {
     margin-bottom: 26px;
@@ -122,7 +127,10 @@ input[type=number] {
   }
 
   @media screen and (max-width: 767px) {
-    padding-right: 30px !important;
+       padding: 0 40px !important;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 24px;
 
   }
 }
@@ -151,10 +159,17 @@ input[type=number] {
   padding-bottom: 1rem;
   .formLeadInput {
     color: #000;
+    &:focus {
+      outline: 1px solid #fb733c;
+    }
   }
+
   &:has(.formLeadError) {
     .formLeadInput {
       color: red;
+      &:focus {
+        outline: 1px solid red;
+      }
     }
   }
 }
@@ -561,6 +576,13 @@ background-color: #145363;
   width: 100%;
   height: 55px;
   cursor: pointer;
+}
+
+.buttonFeedback:hover {
+  background-color: #fff;
+  color: #145363;
+  transition: all var(--button-transition);
+  border: 1px solid #145363;
 }
 
 .feedbackLeadSubtitle {

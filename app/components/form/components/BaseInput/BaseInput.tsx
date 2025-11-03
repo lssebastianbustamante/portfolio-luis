@@ -4,19 +4,8 @@ import {  getInputMode } from "../../utils"
 import type {  FormFieldProps } from "../../typings/interfaces"
 
 import { FormattedMessage } from "react-intl"
-import { useErrorMessage } from "../../hook/useErrorMessage"
-// import { defineMessages } from "react-intl"
 
-// const messages = defineMessages({
-//   inputLabel: {
-//     id: "form/form.input.label",
-//     defaultMessage: "Ingrese su {name}",
-//   },
-//   inputPlaceholder: {
-//     id: "form/form.input.placeholder",
-//     defaultMessage: "Ingrese su {name}",
-//   },
-// })
+
 const CSS_HANDLES = [
   'formLeadinputWrapper',
   'formLeadLabel',
@@ -28,7 +17,7 @@ const CSS_HANDLES = [
    
 
 const BaseInput: React.FC<FormFieldProps> = (props) => {
-  const { getErrorMessage } = useErrorMessage()
+
   const {
       name,
       type,
@@ -55,8 +44,7 @@ const BaseInput: React.FC<FormFieldProps> = (props) => {
       type: type,
     }
     
-    // Debug: Log the error and generated message
-    console.log('Error object:', error?.type);
+  
     const errorMessage = error ? error?.type : ''
 
    
