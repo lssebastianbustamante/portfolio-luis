@@ -7,10 +7,9 @@ import * as LazyComponents from './lazyComponents'
 interface FormContentProps {
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 formHook: any
-  currentCountry: string
 }
 
-const FormContent = memo(({ formHook, currentCountry }: FormContentProps) => {
+const FormContent = memo(({ formHook }: FormContentProps) => {
 
   return (
     <LazyComponents.FormLeadsModal
@@ -28,8 +27,7 @@ const FormContent = memo(({ formHook, currentCountry }: FormContentProps) => {
         handleSubmit={formHook.handleSubmit}
         isValidFormToSubmit={formHook.isValidFormToSubmit}
         formState={formHook.formState}
-        country={currentCountry}
-        key={currentCountry} // Agregar la clave aquí para forzar la re-renderización
+        key={'ARG'} // Agregar la clave aquí para forzar la re-renderización
       />
     </LazyComponents.FormLeadsModal>
   )

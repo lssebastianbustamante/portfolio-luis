@@ -74,31 +74,12 @@ export interface BaseFormData {
   nombre?: string;
   email?: string;
   mensaje?: string;
-}
-
-export interface ArgentinaFormData extends BaseFormData {
-  cuit?: string;
   telefono?: string;
-  entreCalles?: string;
-  calle?: string;
-  altura?: string;
-  codigoPostal?: string;
-  localidad?: string;
 }
 
-export interface ColombiaFormData extends BaseFormData {
-  celular?: string;
-  ciudad?: string;
-  calle?: string;
-}
 
-export interface PeruFormData extends BaseFormData {
-  celular?: string;
-  calle?: string;
 
-}
-
-export type FormData = ArgentinaFormData | ColombiaFormData | PeruFormData;
+export type FormData = BaseFormData
 
 export interface SelectChangeEvent {
   label: string;
@@ -112,21 +93,7 @@ export type OnSelectChange = (
 
 export type SelectProps = Props<SelectOption, false, GroupBase<SelectOption>>;
 
-export interface LeadRegisterPropsArg {
-  country?: string;
-  dataEntity: string;
-  backgroundContainer?: string;
-  titleBlock?: string;
-  subTitleBlock?: string;
-  textButton?: string;
-  canonicalUrl?: string;
-}
 
-export type DataLeadsArg = {
-  nombre: string;
-  telefono: string;
-  email: string;
-};
 
 export interface FormErrors {
   error: string;

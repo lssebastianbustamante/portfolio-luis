@@ -3,16 +3,15 @@ import { FormattedMessage } from 'react-intl'
 
 
 import type {
-  FieldType,
   FormFieldConfig,
   InputClickHandlers,
   SelectOption
 } from '../typings/interfaces'
-import * as LazyComponents from './lazyComponents'
+
 
 
 import LoadingFallback from './LoadingFallback'
-import { FORM_FIELDS_ARG, FORM_FIELDS_COL, FORM_FIELDS_PE } from '../constants'
+import { FORM_FIELDS} from '../constants'
 import FormField from './FormField'
 
 type InputChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
@@ -38,7 +37,6 @@ export interface FormFieldsProps {
   formState: {
     isSubmitting: boolean
   }
-  country: string
 }
 
 const CSS_HANDLES = [
@@ -55,8 +53,7 @@ const FormFields: React.FC<FormFieldsProps> = ({
   createInputClickHandler,
   handleSubmit,
   isValidFormToSubmit,
-  formState,
-  country
+  formState
 }) => {
 
 
@@ -66,13 +63,7 @@ const FormFields: React.FC<FormFieldsProps> = ({
     return <LoadingFallback />
   }
 
-  const fields: FormFieldConfig[] = country === 'AR'
-    ? FORM_FIELDS_ARG.map(field => ({ ...field, type: field.type as FieldType }))
-    : country === 'CO'
-      ? FORM_FIELDS_COL.map(field => ({ ...field, type: field.type as FieldType }))
-      : country === 'PE'
-        ? FORM_FIELDS_PE.map(field => ({ ...field, type: field.type as FieldType }))
-        : FORM_FIELDS_ARG.map(field => ({ ...field, type: field.type as FieldType }))
+const fields: FormFieldConfig[] = [...FORM_FIELDS];
 
   return (
     <div className={CSS_HANDLES[0]}>
@@ -82,7 +73,7 @@ const FormFields: React.FC<FormFieldsProps> = ({
             key={field.name}
             {...field}
             value={formData[field.name]}
-            error={errors[field.name] ? { type: 'custom', params: field } : undefined}
+            error={errors[field.name] ? { type: errors[field.name] } : undefined}
             onChange={createChangeHandlers(field.name)}
             maxLength={field.maxLength}
             minLength={field.minLength}
