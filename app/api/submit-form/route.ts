@@ -25,8 +25,9 @@ export async function POST(request: Request) {
       source: 'portfolio-contact-form',
       createdAt: new Date().toISOString()
     };
-
+    
     console.log('Enviando solicitud a:', apiUrl);
+    
     console.log('Headers:', {
       'Content-Type': 'application/json',
       'Accept': 'application/json, text/plain, */*',
