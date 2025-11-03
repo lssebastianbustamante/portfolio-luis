@@ -583,11 +583,16 @@ background-color: #145363;
   font-weight: 400;
   line-height: 30px;
   text-align: center;
-  color: #145363;
-  padding-left: 30px;
-  margin-bottom: 0;
+  color: var(--primary-orange);
+  padding-left: 0;
+  font-weight: 600;
+  margin-bottom: 1rem;
   padding-right: 0;
-
+   p {
+    font-size: 18px;
+    color: #145363;
+    font-weight: normal;
+   }
   @media screen and (min-width: 64rem) {
     margin-bottom: 26px;
     padding-right: 30px;

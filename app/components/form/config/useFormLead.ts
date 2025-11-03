@@ -1,18 +1,10 @@
 import type React from 'react'
 import { useState, useCallback } from 'react'
-
-
+import type { ValidationErrorType } from '../hook/useErrorMessage'
 import type { FormData, FormErrors, FormState, SelectOption } from '../typings/interfaces'
 import { STATUS } from '../typings/interfaces'
-
 import { updateFieldError, validateRequiredFields } from '../utils'
-
-
-import type { ValidationErrorType } from '../hook/useErrorMessage'
-import { useErrorMessage } from '../hook/useErrorMessage'
-
-import { FORM_FIELDS_ARG, FORM_FIELDS_COL, initialStateFields, REQUIRED_FIELDS_ARG, REQUIRED_FIELDS_COL, REQUIRED_FIELDS_PE } from '../constants'
-import { CountryCode } from '../constants/initialState'
+import { FORM_FIELDS, initialStateFields } from '../constants'
 type InputChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 type SelectChangeHandler = (option: SelectOption) => void;
 type HandleInvalid = (e: React.InvalidEvent<HTMLInputElement | HTMLTextAreaElement>) => void
@@ -33,27 +25,15 @@ const ERROR_DEFAULT = {
 }
 
 export interface FormLeadConfig {
-    canonicalUrl: string;
-    dataEntity: string;
-    country: CountryCode;
+    formFields: typeof FORM_FIELDS
 }
 
-const isValidCountry = (country: string): country is CountryCode => {
-    return ['ARG', 'COL', 'PER'].includes(country);
-};
-
-
-
+type ErrorMessageFn = (fieldName: string, errorType?: ValidationErrorType, params?: any) => string;
 
 export const useFormLead = (
-    { canonicalUrl,
-        dataEntity,
-        country = 'ARG' }: FormLeadConfig
+    formFields: typeof FORM_FIELDS,
+    getErrorMessage: ErrorMessageFn
 ) => {
-
-
-
-    const { getErrorMessage } = useErrorMessage()
     const [formState, setFormState] = useState<FormState>({
         isSubmitting: false,
         hasSubmitted: false,
@@ -61,17 +41,15 @@ export const useFormLead = (
         status: STATUS.IDLE
     })
 
-    if (!isValidCountry(country)) {
-        throw new Error(`Invalid country code: ${country}`)
-    }
 
-    const [formData, setFormData] = useState<FormData>(initialStateFields[country])
+
+    const [formData, setFormData] = useState<FormData>({ ...initialStateFields })
     const [errors, setErrors] = useState<FormErrors>(ERROR_DEFAULT)
+    const [formResponse, setFormResponse] = useState<any>(null)
 
     const handleOpen = useCallback(() => {
-        window.location.hash = canonicalUrl
         setFormState((prev: FormState) => ({ ...prev, isOpen: true }))
-    }, [canonicalUrl])
+    }, [])
 
     const resetForm = () => {
         setFormState({
@@ -81,7 +59,7 @@ export const useFormLead = (
             status: STATUS.IDLE
         });
 
-        setFormData(initialStateFields[country] as unknown as FormData);
+        setFormData(initialStateFields as unknown as FormData);
 
         setErrors(ERROR_DEFAULT);
     };
@@ -124,7 +102,7 @@ export const useFormLead = (
         _value: string,
         validity?: ValidityState
     ) => {
-        const fields = country === 'ARG' ? FORM_FIELDS_ARG : country === 'COL' ? FORM_FIELDS_COL : country === 'PER' ? FORM_FIELDS_COL : FORM_FIELDS_ARG
+        const fields = FORM_FIELDS
 
         if (!validity) {
             return true
@@ -154,7 +132,7 @@ export const useFormLead = (
         setErrors((prev: FormErrors) => updateFieldError(prev, fieldName, message))
 
         return !message
-    }, [getErrorMessage, country])
+    }, [getErrorMessage])
 
     const createChangeHandlers = useCallback(
         (fieldName: string): FieldChangeHandlers => ({
@@ -203,7 +181,7 @@ export const useFormLead = (
     );
 
     const isValidFormToSubmit = useCallback((): boolean => {
-        const phoneField = country === 'ARG' ? 'telefono' : 'celular'
+        const phoneField = 'telefono'
         const requiredFields = new Set<string>(['nombre', 'email', phoneField])
         const requiredFieldsValid = Array.from(requiredFields).every((fieldName: string) => {
             const value = formData[fieldName as keyof typeof formData]
@@ -214,14 +192,14 @@ export const useFormLead = (
         return requiredFieldsValid &&
             !formState.isSubmitting &&
             !formState.hasSubmitted
-    }, [formData, errors, formState, country])
+    }, [formData, errors, formState])
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         if (formState.hasSubmitted || formState.isSubmitting) return
 
-        const phoneField = country === 'ARG' ? 'telefono' : 'celular'
+        const phoneField = 'telefono'
         const requiredFields = new Set<string>(['nombre', 'email', phoneField])
 
         const sanitizedFormData = Object.fromEntries(
@@ -310,6 +288,7 @@ export const useFormLead = (
                 parsed = raw
             }
             
+            setFormResponse(parsed)
             setFormState((prev: FormState) => ({
                 ...prev,
                 hasSubmitted: true,
@@ -337,7 +316,8 @@ export const useFormLead = (
         handleSubmit,
         isValidFormToSubmit,
         resetForm,
-        createInputClickHandler
+        createInputClickHandler,
+        formResponse
     }
 }
 

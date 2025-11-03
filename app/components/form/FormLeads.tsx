@@ -1,18 +1,18 @@
 'use client'
 
 import type React from 'react'
-import { Suspense, useState } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 
 import * as LazyComponents from './components/lazyComponents'
-import type { LeadRegisterPropsArg } from './typings/interfaces'
 import { STATUS } from './typings/interfaces'
 import { useFormLead } from './config/useFormLead'
-import { schemaForm } from './schema/schemaForm'
+import { useErrorMessage } from './hook/useErrorMessage'
 import './FormLeads.css'
 import FormContent from './components/FormContent'
 import LoadingFallback from './components/LoadingFallback'
 import { Feedback } from './components/lazyComponents'
-import { CountryCode, DEFAULT_PROPS } from './constants/initialState'
+import { DEFAULT_PROPS } from './constants/initialState'
+import { FORM_FIELDS } from './constants'
 
 const ErrorBoundary: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   try {
@@ -29,22 +29,26 @@ const CSS_HANDLES = [
   'popupContentStyles',
 ] as const
 
-const FormLeads = ({
-  dataEntity,
-  canonicalUrl = DEFAULT_PROPS.canonicalUrl
-}: LeadRegisterPropsArg) => {
-  const [country] = useState<CountryCode>('ARG') // Si solo usas ARG, puedes dejarlo fijo
+const FormLeads = () => {
 
-  const formHook = useFormLead({ canonicalUrl, dataEntity, country })
+  const { getErrorMessage } = useErrorMessage()
+  const formHook = useFormLead(FORM_FIELDS, getErrorMessage)
   const [isLoading] = useState(false)
-
+  
+  // Log form response when it changes
+  useEffect(() => {
+    if (formHook.formResponse) {
+      console.log('Form submission response:', formHook.formResponse)
+    }
+  }, [formHook.formResponse])
+  
+  console.log('Form data:', formHook.formData)
   const renderContent = () => {
     if (formHook.formState.status === STATUS.FINISH) {
       return (
         <Feedback
           handleClose={formHook.handleClose}
-          title="store/form.feedback.title"
-          text="store/form.feedback.text"
+          response={formHook.formResponse}
         />
       )
     }
@@ -52,7 +56,6 @@ const FormLeads = ({
     return (
       <FormContent
         formHook={formHook}
-        currentCountry={country}
       />
     )
   }
@@ -76,7 +79,5 @@ const FormLeads = ({
     </Suspense>
   )
 }
-
-FormLeads.schema = schemaForm
 
 export default FormLeads

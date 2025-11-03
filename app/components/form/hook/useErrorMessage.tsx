@@ -9,7 +9,6 @@ export type ValidationErrorType =
   | 'typeMismatch'
   | 'rangeOverflow'
   | 'rangeUnderflow'
-  | 'termAndConditions'
   | 'selectEmpty'
 
 export const useErrorMessage = () => {
@@ -24,11 +23,9 @@ export const useErrorMessage = () => {
       if (!fieldName || !errorType) return '';
       // Errores required (incluyendo tyc)
       if (errorType === 'required') {
-        if (fieldName === 'tyc') {
-          return intl.formatMessage({ id: 'form/form.error.tyc' });
-        }
         return intl.formatMessage(
-          { id: 'form/form.error.required' }
+          { id: 'form/form.error.required' },
+          { fieldName: intl.formatMessage({ id: `form/form.label.${fieldName}`, defaultMessage: fieldName }) }
         );
       }
 
@@ -40,18 +37,14 @@ export const useErrorMessage = () => {
         );
       }
 
-      // Errores de términos y condiciones
-      if (errorType === 'termAndConditions') {
-        return intl.formatMessage({ id: 'form/form.error.tyc' });
-      }
-
       // Errores de longitud mínima/máxima
       if (errorType === 'minLength') {
+        console.log( errorType        )
         return intl.formatMessage(
           { id: 'form/form.error.minLength' },
           {
             fieldName: intl.formatMessage({ id: `form/form.label.${fieldName}`, defaultMessage: fieldName }),
-            min: params?.min
+            minLength: params?.min
           }
         );
       }
@@ -99,6 +92,6 @@ export const useErrorMessage = () => {
     },
     [intl]
   );
- 
+
   return { getErrorMessage, intl };
 };

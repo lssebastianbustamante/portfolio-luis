@@ -4,7 +4,7 @@ import {  getInputMode } from "../../utils"
 import type {  FormFieldProps } from "../../typings/interfaces"
 
 import { FormattedMessage } from "react-intl"
-import { useErrorMessage} from "../../hook/useErrorMessage"
+import { useErrorMessage } from "../../hook/useErrorMessage"
 // import { defineMessages } from "react-intl"
 
 // const messages = defineMessages({
@@ -28,7 +28,8 @@ const CSS_HANDLES = [
    
 
 const BaseInput: React.FC<FormFieldProps> = (props) => {
-    const {
+  const { getErrorMessage } = useErrorMessage()
+  const {
       name,
       type,
       value,
@@ -53,9 +54,12 @@ const BaseInput: React.FC<FormFieldProps> = (props) => {
       maxLength: maxLength,
       type: type,
     }
+    
+    // Debug: Log the error and generated message
+    console.log('Error object:', error?.type);
+    const errorMessage = error ? error?.type : ''
 
-    const { getErrorMessage } = useErrorMessage()
-
+   
     return (
       <div className={CSS_HANDLES[0]}>
         <label className={CSS_HANDLES[1]} htmlFor={name}>
@@ -92,9 +96,11 @@ const BaseInput: React.FC<FormFieldProps> = (props) => {
           placeholder={usePlaceholderMessage(name)}
           inputMode={getInputMode(type)}
         />
-        {error && <p className={CSS_HANDLES[4]}>{
-          getErrorMessage(name, error.type, errorValues)
-   }</p>}
+        {errorMessage && (
+          <p className={CSS_HANDLES[4]} style={{ color: 'red', fontSize: '0.8rem', marginTop: '4px' }}>
+            {errorMessage}
+          </p>
+        )}
       </div>
     )
   }
