@@ -5,11 +5,11 @@ import { useIntl } from 'react-intl'
 
 interface FeedbackProps {
   handleClose: () => void
-  response: {
-    Nombre: string
-    email: string
+  response?: {
+    Nombre?: string
+    email?: string
+    [key: string]: any
   }
-
 }
 const CSS_HANDLES = [
   'containerBlockFeedback',
@@ -25,13 +25,16 @@ const Feedback: React.FC<FeedbackProps> = ({
    }) => {
 
 const intl = useIntl()
+  // Provide default values if response is undefined
+  const safeResponse = response || {}
+  const userName = safeResponse.Nombre || 'usuario'
   return (
     <div className={CSS_HANDLES[0]}>
       <h2 className={CSS_HANDLES[1]}>
         <FormattedMessage
           id="form/form.feedback.title"
           defaultMessage="¡Gracias {name} por contactarme!"
-          values={{ name: response.Nombre }}
+          values={{ name: userName }}
         />
       </h2>
       <div className={`${CSS_HANDLES[1]} mb4`}>
@@ -39,7 +42,6 @@ const intl = useIntl()
           <FormattedMessage
             id="form/form.feedback.message"
             defaultMessage="He recibido tu mensaje."
-            
           />
         </p>
         <p className="f5 lh-copy">
@@ -49,15 +51,15 @@ const intl = useIntl()
           />
         </p>
       </div>
-  <button
-      type="button"
-      className={CSS_HANDLES[2]}
-      onClick={handleClose}
-      aria-label={intl.formatMessage({
-        id: "form/form.feedback.ariaLabel",
-        defaultMessage: "Cerrar modal"
-      })}
-    >
+      <button
+        type="button"
+        className={CSS_HANDLES[2]}
+        onClick={handleClose}
+        aria-label={intl.formatMessage({
+          id: "form/form.feedback.ariaLabel",
+          defaultMessage: "Cerrar modal"
+        })}
+      >
       <Close color="#EAAB5E" />
     </button>
       <button

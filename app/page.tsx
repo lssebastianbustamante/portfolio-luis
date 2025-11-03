@@ -21,16 +21,11 @@ export default function Home() {
     }}>
       <section className="max-w-5xl mx-auto main-container" >
         <Header />
-
         <About />
         <Experience />
         <Projects />
         <Skills />
-        <FormLeads
-          backgroundContainer="#e95b2f"
-          titleBlock="Get in Touch"
-          subTitleBlock="Feel free to reach out for collaborations or just a chat!"
-          textButton="Contact Me" dataEntity={""} />
+        <FormLeads />
       </section>
       <Footer />
     </main>

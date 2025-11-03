@@ -29,7 +29,7 @@ const CSS_HANDLES = [
   'popupContentStyles',
 ] as const
 
-const FormLeads = () => {
+const FormLeads: React.FC= () => {
 
   const { getErrorMessage } = useErrorMessage()
   const formHook = useFormLead(FORM_FIELDS, getErrorMessage)
