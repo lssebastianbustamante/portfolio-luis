@@ -60,7 +60,6 @@ const intl = useIntl()
           defaultMessage: "Cerrar modal"
         })}
       >
-      <Close color="#EAAB5E" />
     </button>
       <button
         type="button"

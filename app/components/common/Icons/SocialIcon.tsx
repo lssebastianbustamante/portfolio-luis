@@ -6,9 +6,10 @@ interface SocialIconProps {
   function SocialIcon({ title, path }: SocialIconProps) {
     return (
       <div className="icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fb733c" className="svg-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="240" viewBox="0 0 24 24" fill="#fb733c" className="svg-icon">
           <title>{title}</title>
           <path d={path} />
+          
         </svg>
       </div>
     );

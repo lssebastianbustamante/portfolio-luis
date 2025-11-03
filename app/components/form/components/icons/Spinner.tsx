@@ -7,12 +7,19 @@ function Spinner({ color = '#EAAB5E' }: { color?: string }) {
       height={50}
     >
       <defs>
-        <radialGradient id="a11" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
-          <stop offset="0" stopColor={color}></stop>
-          <stop offset=".3" stopColor={color} stopOpacity=".9"></stop>
-          <stop offset=".6" stopColor={color} stopOpacity=".6"></stop>
-          <stop offset=".8" stopColor={color} stopOpacity=".3"></stop>
-          <stop offset="1" stopColor={color} stopOpacity="0"></stop>
+        <radialGradient 
+          id="a11" 
+          cx=".66" 
+          fx=".66" 
+          cy=".3125" 
+          fy=".3125" 
+          gradientTransform="scale(1.5)"
+        >
+          <stop offset="0" stopColor={color} />
+          <stop offset=".3" stopColor={color} stopOpacity=".9" />
+          <stop offset=".6" stopColor={color} stopOpacity=".6" />
+          <stop offset=".8" stopColor={color} stopOpacity=".3" />
+          <stop offset="1" stopColor={color} stopOpacity="0" />
         </radialGradient>
       </defs>
       <circle
@@ -27,14 +34,14 @@ function Spinner({ color = '#EAAB5E' }: { color?: string }) {
         r="70"
       >
         <animateTransform
-          type="rotate"
           attributeName="transform"
-          calcMode="spline"
-          dur="2s"
-          values="360;0"
-          keyTimes="0;1"
-          keySplines="0 0 1 1"
+          type="rotate"
+          from="0 100 100"
+          to="360 100 100"
+          dur="1.5s"
           repeatCount="indefinite"
+          keyTimes="0;1"
+          keySplines="0.4 0 0.2 1"
         />
       </circle>
       <circle

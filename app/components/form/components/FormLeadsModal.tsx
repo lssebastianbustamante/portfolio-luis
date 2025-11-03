@@ -3,7 +3,7 @@ import type React from 'react'
 import { Close } from './icons'
 
 
-import { defineMessages, FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 interface FormLeadsModalProps {
   children: React.ReactNode
@@ -22,16 +22,7 @@ const CSS_HANDLES = [
 
 
 
-      const messages = defineMessages({
-        modalTitle: {
-          id: 'form/modal.title',
-          defaultMessage: 'Title',
-        },
-        modalSubtitle: {
-          id: 'form/modal.subTitle',
-          defaultMessage: 'Subtitle',
-        },
-      })
+
 
 const FormLeadsModal: React.FC<FormLeadsModalProps> = ({
   children,
@@ -46,7 +37,7 @@ const FormLeadsModal: React.FC<FormLeadsModalProps> = ({
       <div className={CSS_HANDLES[1]}>
         <h2 className={CSS_HANDLES[2]}>
           <FormattedMessage
-            id={messages.modalTitle.id}
+            id="form/modal.title"
             defaultMessage="Title"
           />
         </h2>
@@ -56,11 +47,11 @@ const FormLeadsModal: React.FC<FormLeadsModalProps> = ({
           onClick={handleClose}
           aria-label="Cerrar modal"
         >
-          <Close color="#EAAB5E" />
+          <Close/>
         </button>
         <p className={CSS_HANDLES[4]}>
           <FormattedMessage
-            id={messages.modalSubtitle.id}
+            id="form/modal.subTitle"
             defaultMessage="Subtitle"
           />
         </p>

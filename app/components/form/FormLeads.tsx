@@ -33,16 +33,8 @@ const FormLeads: React.FC= () => {
 
   const { getErrorMessage } = useErrorMessage()
   const formHook = useFormLead(FORM_FIELDS, getErrorMessage)
-  const [isLoading] = useState(false)
   
-  // Log form response when it changes
-  useEffect(() => {
-    if (formHook.formResponse) {
-      console.log('Form submission response:', formHook.formResponse)
-    }
-  }, [formHook.formResponse])
-  
-  console.log('Form data:', formHook.formData)
+
   const renderContent = () => {
     if (formHook.formState.status === STATUS.FINISH) {
       return (

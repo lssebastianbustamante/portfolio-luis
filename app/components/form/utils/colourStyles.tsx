@@ -7,7 +7,7 @@ export const colourStyles: StylesConfig = {
     borderRadius: '10px',
     border: 'none',
     textAlign: 'left',
-    color: '#4f2170',
+    color: '#fb733c',
     padding: '0px 2px',
     marginTop: '10px',
     fontSize: '16px',
@@ -19,13 +19,13 @@ export const colourStyles: StylesConfig = {
   placeholder: (styles) => ({
     ...styles,
 
-    color: '#4f2170'
+    color: '#fb733c'
   }),
 
   indicatorsContainer: (styles) => ({
     ...styles,
     '& svg': {
-      fill: '#4f2170'
+      fill: '#fb733c'
     }
   }),
   indicatorSeparator: (styles) => ({
@@ -34,17 +34,17 @@ export const colourStyles: StylesConfig = {
   }),
   singleValue: (styles) => ({
     ...styles,
-    color: '#4f2170'
+    color: '#fb733c'
   }),
-  input: (styles) => ({ ...styles, color: '#4f2170' }),
+  input: (styles) => ({ ...styles, color: '#fb733c' }),
   option: (styles, state) => ({
     ...styles,
-    color: state.isSelected ? 'white' : '#4f2170',
+    color: state.isSelected ? 'white' : '#fb733c',
     textAlign: 'left',
-    backgroundColor: state.isSelected ? '#4f2170' : 'white',
+    backgroundColor: state.isSelected ? '#fb733c' : 'white',
     ':hover': {
-      backgroundColor: state.isSelected ? 'white' : '#4f2170',
-      color: state.isSelected ? '#4f2170' : 'white'
+      backgroundColor: state.isSelected ? 'white' : '#fb733c',
+      color: state.isSelected ? '#fb733c' : 'white'
     }
   })
 }

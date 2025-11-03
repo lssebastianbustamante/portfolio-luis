@@ -45,11 +45,11 @@ function IconHeadLine({ title }: IconHeadLineProps) {
 
         <div className="icon-container text-3xl font-semibold mb-6  pb-2 font-noto">
 
-            <span className="flex h-[1.1em] w-[auto] justify-center items-center mr-4">
+            <span className="flex h-[1.1em] w-[auto] justify-center items-center">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"
-                    className="h-[1em] w-auto fill-current stroke-current"
+                    className="h-[1em] w-auto fill-current svg-icon"
                     style={{
                         height: "1em", width: "1.5em"
                     }}

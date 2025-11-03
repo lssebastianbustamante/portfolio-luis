@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-function Icon({ color = '#EAAB5E' }) {
+function Icon({ color = '#fb733c' }) {
   return (
     <svg
       width="29"

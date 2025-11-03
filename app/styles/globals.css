@@ -234,9 +234,11 @@ span.skill {
 
 /* Utilidades */
 .svg-icon {
-  width: auto;
-  height: 1rem;
-  margin-right: 10px;
+  width: 2rem !important;
+  height: 1.5rem !important;
+  margin-right: 0;
+  display: flex;
+
 
   @media screen and (max-width: 787px) {
     margin-right: 5px;
