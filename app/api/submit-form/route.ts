@@ -1,19 +1,36 @@
 import { NextResponse } from 'next/server';
+import { createLogger } from '../../utils/logger';
+
+const logger = createLogger('API:SubmitForm');
 
 export async function POST(request: Request) {
+  const requestId = Math.random().toString(36).substring(2, 9);
+  const startTime = Date.now();
+  
   try {
     const formData = await request.json();
     const apiKey = process.env.API_KEY?.replace(/^['"]|['"]$/g, '');
     
-    console.log('API Key from env:', apiKey ? '***' + apiKey.slice(-4) : 'No encontrada');
-    console.log('Datos del formulario:', JSON.stringify(formData, null, 2));
+    logger.info(`[${requestId}] Inicio de solicitud de formulario`, {
+      method: request.method,
+      url: request.url,
+      hasApiKey: !!apiKey,
+      formData: {
+        hasEmail: !!formData.email,
+        hasName: !!formData.nombre,
+        hasPhone: !!formData.telefono,
+        hasMessage: !!formData.mensaje
+      }
+    });
     
     if (!apiKey) {
-      console.error('❌ API_KEY no está configurada en las variables de entorno');
+      const errorMsg = 'API_KEY no está configurada en las variables de entorno';
+      logger.error(`[${requestId}] ${errorMsg}`);
       return NextResponse.json(
         { 
           error: 'Error de configuración del servidor',
-          details: 'API_KEY no configurada'
+          details: 'API_KEY no configurada',
+          requestId
         },
         { status: 500 }
       );
@@ -25,58 +42,107 @@ export async function POST(request: Request) {
       source: 'portfolio-contact-form',
       createdAt: new Date().toISOString()
     };
-    
-    console.log('Enviando solicitud a:', apiUrl);
-    
-    console.log('Headers:', {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json, text/plain, */*',
-      'X-API-Key': '***' + apiKey.slice(-4)
-    });
-    console.log('Body:', JSON.stringify(requestBody, null, 2));
 
+    logger.debug(`[${requestId}] Enviando solicitud a API externa`, {
+      url: apiUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json, text/plain, */*',
+        'X-API-Key': '***' + apiKey.slice(-4)
+      },
+      body: {
+        ...requestBody,
+        // No registrar datos sensibles
+        email: requestBody.email ? '***@***' : undefined,
+        telefono: requestBody.telefono ? '***' : undefined
+      }
+    });
+
+    const startApiCall = Date.now();
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json, text/plain, */*',
-        'X-API-Key': apiKey
+        'X-API-Key': apiKey,
+        'X-Request-ID': requestId
       },
       body: JSON.stringify(requestBody)
     });
 
+    const responseTime = Date.now() - startApiCall;
     const responseText = await response.text();
-    console.log('Respuesta de la API:', {
+    
+    logger.info(`[${requestId}] Respuesta de la API recibida`, {
       status: response.status,
       statusText: response.statusText,
-      headers: Object.fromEntries(response.headers.entries()),
-      body: responseText
+      responseTime: `${responseTime}ms`,
+      headers: Object.fromEntries(
+        Array.from(response.headers.entries())
+          .filter(([key]) => !key.toLowerCase().includes('key'))
+      )
     });
 
     if (!response.ok) {
-      throw new Error(`Error en la API (${response.status}): ${response.statusText}\n${responseText}`);
+      const error = new Error(`Error en la API (${response.status}): ${response.statusText}`);
+      logger.error(`[${requestId}] ${error.message}`, {
+        response: {
+          status: response.status,
+          statusText: response.statusText,
+          body: responseText
+        },
+        requestId
+      });
+      
+      throw error;
     }
 
     try {
       const data = responseText ? JSON.parse(responseText) : {};
-      return NextResponse.json(data);
+      logger.info(`[${requestId}] Solicitud completada exitosamente`, {
+        responseTime: `${Date.now() - startTime}ms`,
+        requestId
+      });
+      
+      return NextResponse.json({
+        ...data,
+        requestId
+      });
     } catch (e) {
-      console.error('Error al analizar la respuesta JSON:', e);
+      const error = e as Error;
+      logger.error(`[${requestId}] Error al analizar la respuesta JSON`, {
+        error: error.message,
+        stack: error.stack,
+        responseText,
+        requestId
+      });
+      
       return NextResponse.json(
         { 
           error: 'Respuesta inesperada del servidor',
-          details: responseText
+          details: responseText,
+          requestId
         },
         { status: 500 }
       );
     }
   } catch (error) {
-    console.error('❌ Error al procesar el formulario:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    
+    logger.error(`[${requestId}] Error al procesar el formulario`, {
+      error: errorMessage,
+      stack: errorStack,
+      responseTime: `${Date.now() - startTime}ms`,
+      requestId
+    });
+    
     return NextResponse.json(
       { 
         error: 'Error al procesar el formulario',
-        details: error instanceof Error ? error.message : 'Error desconocido',
-        stack: process.env.NODE_ENV === 'development' ? (error as Error).stack : undefined
+        details: errorMessage,
+        stack: process.env.NODE_ENV === 'development' ? errorStack : undefined,
+        requestId
       },
       { status: 500 }
     );
