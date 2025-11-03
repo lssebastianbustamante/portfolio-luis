@@ -238,26 +238,27 @@ export const useFormLead = (
                 status: STATUS.LOADING
             }))
 
-            let finalResponse: Response | null = null
-            const maxRetries = 2
+            let finalResponse: Response | null = null;
+            const maxRetries = 2;
+            
+            const submitData = {
+                email: (formData as any).email ?? '',
+                nombre: (formData as any).nombre ?? '',
+                telefono: (formData as any).telefono ?? '',
+                mensaje: (formData as any).mensaje ?? ''
+            };
+
             for (let attempt = 0; attempt <= maxRetries; attempt++) {
-                const controller = new AbortController()
-                const timeoutId = setTimeout(() => controller.abort(), 15000)
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 15000);
+                
                 try {
-                    const response = await fetch(`https://luis-platzi.app.n8n.cloud/webhook/portfolio-form`, {
+                    const response = await fetch('/api/submit-form', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Accept': 'application/json, text/plain, */*'
                         },
-                        body: JSON.stringify({
-                            email: (formData as any).email ?? '',
-                            nombre: (formData as any).nombre ?? '',
-                            telefono: (formData as any).telefono ?? '',
-                            mensaje: (formData as any).mensaje ?? '',
-                            createdAt: new Date().toISOString(),
-                            source: 'portfolio-contact-form'
-                        }),
+                        body: JSON.stringify(submitData),
                         signal: controller.signal
                     })
                     clearTimeout(timeoutId)
